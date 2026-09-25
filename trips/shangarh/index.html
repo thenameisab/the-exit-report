@@ -143,6 +143,17 @@ h1 .arrow{color:var(--marigold);font-family:Bungee,Impact,sans-serif;font-size:.
 .note-card p{margin:0;font-size:14.5px}
 footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
 
+.tab{cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.stop.view .card.postcard{border:2px dashed var(--sky)}
+.stop.view .stone .top{background:var(--sky);color:#fff}
+.stop.view .kicker,.stop.view .order b{color:var(--sky)}
+.stop.view.skipped .card{opacity:.6}
+.stop.view.skipped .eta{background:var(--ink-soft)!important}
+.stampalt{position:absolute;top:10px;right:10px;width:64px;height:70px;display:grid;place-content:center;text-align:center;background:var(--paper);color:var(--ink);font:17px/1.05 Bungee,Impact,sans-serif;border:2px solid var(--sky);outline:4px dotted var(--paper);transform:rotate(6deg);box-shadow:2px 3px 0 rgba(0,0,0,.2)}
+.stampalt small{font-size:9px;letter-spacing:.1em;color:var(--sky)}
+.sip.add input{accent-color:var(--sky)}
+
 @media (max-width:760px){
   .card{grid-template-columns:1fr}
   .photo{min-height:0;aspect-ratio:16/10}
@@ -164,18 +175,20 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
     <div class="hok" aria-hidden="true">HORN<br>OK<br>PLEASE</div>
     <div class="flag"><span>30 SEP · 05:00</span><span>ROAD TRIP</span><span>CAFFEINE EDITION</span></div>
     <h1>Gurugram <span class="arrow">→</span> Shangarh</h1>
-    <p class="sub">Five coffee stops, plus three backups, on the drive from the NCR plains to a meadow in the Sainj Valley. Your first cup comes about three hours in, and the last one is on a terrace overlooking the Great Himalayan National Park.</p>
+    <p class="sub">Five coffee stops and six hill viewpoints on the drive from the NCR plains to a meadow in the Sainj Valley. Your first cup comes about three hours in, and the last one is on a terrace overlooking the Great Himalayan National Park.</p>
     <div class="stats">
       <div class="stat"><b>≈540</b><small>km, door to meadow</small></div>
-      <div class="stat"><b>≈12h</b><small>with coffee breaks</small></div>
-      <div class="stat"><b>5+3</b><small>stops + backups</small></div>
+      <div class="stat"><b id="arriveStat">17:25</b><small>arrive in Shangarh</small></div>
+      <div class="stat"><b>5 + 6</b><small>coffee stops + viewpoints</small></div>
       <div class="stat"><b>2,100m</b><small>Shangarh altitude</small></div>
     </div>
     <div class="trim" aria-hidden="true"></div>
   </header>
 
   <nav class="tabs" aria-label="Trip sections">
-    <span class="tab" aria-current="page">Coffee stops</span>
+    <button type="button" class="tab" data-filter="all" aria-pressed="true">Everything</button>
+    <button type="button" class="tab" data-filter="coffee" aria-pressed="false">Coffee stops</button>
+    <button type="button" class="tab" data-filter="view" aria-pressed="false">Viewpoints</button>
     <span class="tab soon">Stays</span>
     <span class="tab soon">Things to do</span>
     <span class="tab soon">Packing list</span>
@@ -187,12 +200,12 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
     <input id="depart" type="range" min="210" max="480" step="15" value="300" aria-describedby="dialNote">
     <a class="btn route" id="routeLink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Gurugram,+Haryana/Golden+Hut+Umri+Chowk+Kurukshetra/Barista+Kiratpur+Sahib+NH205/Suket+Cafe+Ner+Chowk/Gateway+homestay+and+cafe+Aut/Shangarh,+Himachal+Pradesh">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>Full route in Maps</a>
-    <p class="note" id="dialNote">Drag to change your start time. Arrival times update, and a stop turns pink if you'd reach it while it's closed. Times assume the KMP Expressway, NH44 to Ambala, Kharar–Ropar, then the Kiratpur–Ner Chowk four-lane.</p>
+    <p class="note" id="dialNote">Drag to change your start time. Tick or untick viewpoints to add or drop them, and every time after that point shifts. A stop turns pink if you'd reach it while it's closed. Times assume the KMP Expressway, NH44 to Ambala, Kharar–Ropar, then the Kiratpur–Ner Chowk four-lane.</p>
   </section>
 
   <ol class="route-list" id="route" style="list-style:none;margin:0">
 
-    <li class="stop" data-off="175" data-open="0000-2400" style="--c:var(--magenta)">
+    <li class="stop" data-kind="coffee" data-off="175" data-open="0000-2400" style="--c:var(--magenta)">
       <div class="stone" aria-hidden="true"><div class="top">NH44</div><div class="body">205<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -222,7 +235,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
 
     <li class="leg">Ambala → Zirakpur → Kharar → Ropar · about 2 h 30</li>
 
-    <li class="stop" data-off="345" data-open="0000-2400" style="--c:var(--indigo)">
+    <li class="stop" data-kind="coffee" data-off="345" data-open="0000-2400" style="--c:var(--indigo)">
       <div class="stone" aria-hidden="true"><div class="top">NH205</div><div class="body">345<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -246,9 +259,34 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </article>
     </li>
 
-    <li class="leg">Kiratpur–Ner Chowk four-lane · tunnels, Gobind Sagar views · about 2 h</li>
+    <li class="leg">Kiratpur–Ner Chowk four-lane · five tunnels · about 2 h</li>
 
-    <li class="stop hp" data-off="470" style="--c:var(--teal)">
+    <li class="stop view" data-kind="view" data-off="390" style="--c:var(--sky)">
+      <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">380<small>KM</small></div></div>
+      <article class="card postcard">
+        <div class="photo">
+          <img src="img/v-gobind.jpg" alt="Blue-green water of the Gobind Sagar reservoir framed by low Shivalik hills" loading="lazy">
+          <div class="eta"><small>PASS ≈</small><span class="t"></span></div>
+          <div class="stampalt" aria-label="Altitude about 560 metres"><small>ALT</small>560<small>m</small></div>
+          <span class="credit">Photo: Manu Moudgil, CC BY-SA 4.0</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Window-seat view · Bilaspur stretch</span>
+          <h2>Gobind Sagar</h2>
+          <p class="where">On the Kiratpur–Ner Chowk four-lane, around the Bilaspur bypass</p>
+          <div class="rating"><span class="n">The Bhakra Dam reservoir on the Satluj</span></div>
+          <p class="why">After the first tunnels, the four-lane swings past the huge Bhakra reservoir. At the end of the monsoon the water is high and turquoise. There’s no official lay-by on the expressway, so enjoy it from the car rather than stopping on a bridge or near a tunnel mouth.</p>
+          <p class="order"><b>Photo tip</b>Passenger side, phone ready, once you’re out of the long Garamora tunnel.</p>
+          <ul class="chips"><li>Drive-by</li><li>No stopping on bridges</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gobind+Sagar+Lake+Bilaspur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            
+          </div>
+        </div>
+      </article>
+    </li>
+
+    <li class="stop hp" data-kind="coffee" data-off="470" style="--c:var(--teal)">
       <div class="stone" aria-hidden="true"><div class="top">HP</div><div class="body">440<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -276,13 +314,88 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </div>
     </li>
 
-    <li class="leg">Mandi → Pandoh Dam → Beas gorge · about 1 h 30</li>
+    <li class="leg">Mandi bypass → Pandoh → Pandoh–Aut twin tunnels · about 1 h 30</li>
 
-    <li class="stop hp" data-off="600" style="--c:var(--sky)">
+    <li class="stop view" data-kind="view" data-off="540" style="--c:var(--sky)">
+      <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">465<small>KM</small></div></div>
+      <article class="card postcard">
+        <div class="photo">
+          <img src="img/v-panchvaktra.jpg" alt="The stone Panchvaktra temple on a riverbank platform below Mandi town" loading="lazy">
+          <div class="eta"><small>REACH ≈</small><span class="t"></span></div>
+          <div class="stampalt" aria-label="Altitude about 760 metres"><small>ALT</small>760<small>m</small></div>
+          <span class="credit">Photo: Wanderlog / Google</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Detour · Mandi riverfront</span>
+          <h2>Panchvaktra Temple</h2>
+          <p class="where">Beas–Suketi confluence, Mandi town (the new bypass skips it)</p>
+          <div class="rating"><span class="stars" style="--p:96%" aria-label="4.8 out of 5"></span>4.8<span class="n">519 Google reviews</span></div>
+          <p class="why">A 16th-century Shiva temple with a five-faced idol, right where the Suketi joins the Beas, with old Mandi stacked up the hill behind. It’s protected by the Archaeological Survey of India. You’ll need to leave the Mandi bypass and drive into town, so allow about half an hour.</p>
+          <p class="order"><b>Photo tip</b>Shoot from the Victoria Bridge side to get the temple, both rivers and the town in one frame.</p>
+          <ul class="chips"><li>ASI monument</li><li>Two rivers meet</li><li>Town detour</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Panchvaktra+Temple+Mandi&amp;query_place_id=ChIJsRC6LjriBDkRNuhaJpB8gM0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip add"><input type="checkbox" id="add-panch" data-add="30">Add to plan (+30 min)</label>
+          </div>
+        </div>
+      </article>
+    </li>
+
+    <li class="stop view" data-kind="view" data-off="565" style="--c:var(--sky)">
+      <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">485<small>KM</small></div></div>
+      <article class="card postcard">
+        <div class="photo">
+          <img src="img/v-pandoh.jpg" alt="White spray from Pandoh Dam’s open spillway filling a green Beas gorge" loading="lazy">
+          <div class="eta"><small>REACH ≈</small><span class="t"></span></div>
+          <div class="stampalt" aria-label="Altitude about 900 metres"><small>ALT</small>900<small>m</small></div>
+          <span class="credit">Photo: Wanderlog / Google</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Quick stop · right on NH3</span>
+          <h2>Pandoh Dam View</h2>
+          <p class="where">NH3 at Hataun, just before the Pandoh–Aut tunnels</p>
+          <div class="rating"><span class="stars" style="--p:92%" aria-label="4.6 out of 5"></span>4.6<span class="n">774 Google reviews</span></div>
+          <p class="why">The official viewpoint over the Pandoh reservoir, where the Beas is held back and diverted towards the Satluj. There’s parking and snack stalls, plus a ropeway across to the Baglamukhi temple (about ₹500 return) if you want a bird’s-eye view. Fifteen minutes is plenty.</p>
+          <p class="order"><b>Photo tip</b>Photograph the lake and hills, but not the dam structure itself. That’s restricted for security reasons.</p>
+          <ul class="chips"><li>On route</li><li>Parking</li><li>Ropeway nearby</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Pandoh+Dam+View+Hataun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip add"><input type="checkbox" id="add-pandoh" data-add="15" checked>Add to plan (+15 min)</label>
+          </div>
+        </div>
+      </article>
+    </li>
+
+    <li class="stop view" data-kind="view" data-off="580" style="--c:var(--sky)">
+      <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">490<small>KM</small></div></div>
+      <article class="card postcard">
+        <div class="photo">
+          <img src="img/v-hanogi.jpg" alt="A long suspension footbridge over the turquoise Beas at Hanogi, with steep hills behind" loading="lazy">
+          <div class="eta"><small>REACH ≈</small><span class="t"></span></div>
+          <div class="stampalt" aria-label="Altitude about 1,000 metres"><small>ALT</small>1,000<small>m</small></div>
+          <span class="credit">Photo: Kamal1991shimla, CC BY-SA 4.0</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Old-road detour · check it’s open</span>
+          <h2>Hanogi Mata Temple</h2>
+          <p class="where">Old NH3 near Kun village, between Pandoh and Aut</p>
+          <div class="rating"><span class="stars" style="--p:92%" aria-label="4.6 out of 5"></span>4.6<span class="n">Google rating</span></div>
+          <p class="why">Drivers on this road traditionally stopped here to ask for safe passage. The shrine sits on a cliff above the Beas, with a swaying footbridge below. The new 12.5 km twin tunnel now bypasses it, and stretches of the old road were shut after monsoon damage in 2024. Only go if people at Pandoh tell you the old road is open.</p>
+          <p class="order"><b>Photo tip</b>Walk out onto the footbridge for the gorge shot. The steps up to the temple take about 15 minutes.</p>
+          <ul class="chips"><li>Bypassed by tunnel</li><li>Steps</li><li>Ask locally first</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hanogi+Mata+Temple+Pandoh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip add"><input type="checkbox" id="add-hanogi" data-add="40">Add to plan (+40 min)</label>
+          </div>
+        </div>
+      </article>
+    </li>
+
+    <li class="stop hp" data-kind="coffee" data-off="600" style="--c:var(--sky)">
       <div class="stone" aria-hidden="true"><div class="top">HP</div><div class="body">505<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
-          <img src="img/larji.jpg" alt="Mountains reflected in the still, glassy water of Larji reservoir" loading="lazy">
+          <img src="img/gateway.jpg" alt="Travellers relaxing at Gateway Café’s rooftop tables above the river valley" loading="lazy">
           <div class="eta"><small>ARRIVE ≈</small><span class="t">15:00</span></div>
           <span class="credit">Photo: Gateway Café</span>
         </div>
@@ -303,9 +416,34 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </article>
     </li>
 
-    <li class="leg">Larji → Sainj → climb to Shangarh · about 1 h 45, narrow and winding</li>
+    <li class="stop view" data-kind="view" data-off="620" style="--c:var(--sky)">
+      <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">507<small>KM</small></div></div>
+      <article class="card postcard">
+        <div class="photo">
+          <img src="img/larji.jpg" alt="Mountains reflected in the still, glassy water of Larji reservoir" loading="lazy">
+          <div class="eta"><small>REACH ≈</small><span class="t"></span></div>
+          <div class="stampalt" aria-label="Altitude about 950 metres"><small>ALT</small>950<small>m</small></div>
+          <span class="credit">Photo: Gateway Café</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Two minutes past Gateway Café</span>
+          <h2>Larji Confluence</h2>
+          <p class="where">Larji bridge, where the Sainj and Tirthan meet the Beas</p>
+          <div class="rating"><span class="n">Three rivers, one reservoir</span></div>
+          <p class="why">Right after your coffee, you cross the Beas on the Larji bridge. The Sainj and Tirthan flow into the reservoir here, and on a still afternoon the water turns into a mirror. It’s also where the Sainj Valley road begins, so it makes a good marker for the last leg.</p>
+          <p class="order"><b>Photo tip</b>Stop at the bridge approach for the mirror shot. Afternoon light works best.</p>
+          <ul class="chips"><li>On route</li><li>Mirror water</li><li>Start of Sainj road</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Larji+Dam+Kullu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip add"><input type="checkbox" id="add-larji" data-add="10" checked>Add to plan (+10 min)</label>
+          </div>
+        </div>
+      </article>
+    </li>
 
-    <li class="stop end" data-off="720" data-open="0830-2230" style="--c:var(--leaf)">
+    <li class="leg">Sainj → Ropa (GHNP gate) → climb to Shangarh · about 1 h 30, narrow and winding</li>
+
+    <li class="stop end" data-kind="coffee" data-off="720" data-open="0830-2230" style="--c:var(--leaf)">
       <div class="stone" aria-hidden="true"><div class="top">END</div><div class="body">540<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -331,6 +469,31 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
         <div><span class="tag">ALSO IN SHANGARH</span><h3>Café Stories n' More</h3><p>Near Zostel, in Dharali village. Board games, hand-beaten hot coffee, oats pancakes and two resident dogs, Butter and Fly. Recent reviews are mixed, so treat it as a second option. <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Cafe+Stories+n+More+Shangarh">Map</a></p></div>
       </div>
     </li>
+
+    <li class="stop view" data-kind="view" data-off="735" style="--c:var(--sky)">
+      <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">540<small>KM</small></div></div>
+      <article class="card postcard">
+        <div class="photo">
+          <img src="img/v-shangarh.jpg" alt="The tiered wooden Shangchul Mahadev temple at the edge of a vast, smooth green meadow ringed by deodars" loading="lazy">
+          <div class="eta"><small>PASS ≈</small><span class="t"></span></div>
+          <div class="stampalt" aria-label="Altitude about 2,100 metres"><small>ALT</small>2,100<small>m</small></div>
+          <span class="credit">Photo: Wanderlog / Google</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Sunset walk · the finale</span>
+          <h2>Shangarh Meadow</h2>
+          <p class="where">Devta Maidan and Shangchul Mahadev Temple, Shangarh</p>
+          <div class="rating"><span class="stars" style="--p:94%" aria-label="4.7 out of 5"></span>4.7<span class="n">409 Google reviews</span></div>
+          <p class="why">A huge meadow with not a single stone on it (local legend says the Pandavas sieved it clean), the three-tiered wooden Shangchul Mahadev temple at one edge, and snow peaks behind. It’s a two-minute walk from Pablo’s. The ground is sacred, so no eating or smoking on the grass.</p>
+          <p class="order"><b>Photo tip</b>Frame the temple in the foreground at golden hour, around 17:45. Come back at dawn for the snow peaks.</p>
+          <ul class="chips"><li>2 min from Pablo’s</li><li>Sacred ground</li><li>Sunset ≈ 18:10</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Shangarh+Meadows&amp;query_place_id=ChIJ0xICCYtNBDkRDao3-0O4sMM"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            
+          </div>
+        </div>
+      </article>
+    </li>
   </ol>
 
   <section class="notes" aria-label="Road notes">
@@ -339,32 +502,47 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
     <div class="note-card" style="--c:var(--marigold)"><h3>Post-monsoon check</h3><p>It's the end of September, so check HP road status for the Mandi–Aut and Sainj stretches the evening before you leave.</p></div>
   </section>
 
-  <footer>Ratings and review counts come from Google Maps listings (via Wanderlog and other aggregators), checked 25 Sep 2026. Times and distances are estimates. Hours can change, so confirm on the Maps link before counting on a stop.</footer>
+  <footer>Ratings and review counts come from Google Maps listings (via Wanderlog and other aggregators), checked 25 Sep 2026. Viewpoint photos without a named photographer are from Google Maps listings; the Gobind Sagar and Hanogi photos are from Wikimedia Commons (CC BY-SA 4.0). Times and distances are estimates. Hours can change, so confirm on the Maps link before counting on a stop.</footer>
 </div>
 
 <script>
 (function(){
-  var range=document.getElementById('depart'),out=document.getElementById('departOut');
+  var range=document.getElementById('depart'),out=document.getElementById('departOut'),arrive=document.getElementById('arriveStat');
   var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
   function fmt(m){m=((m%1440)+1440)%1440;var h=Math.floor(m/60),mm=m%60;return (h<10?'0':'')+h+':'+(mm<10?'0':'')+mm}
   function isOpen(win,m){if(!win)return null;var a=+win.slice(0,2)*60+ +win.slice(2,4),b=+win.slice(5,7)*60+ +win.slice(7,9);m=m%1440;return m>=a&&m<b}
+  var adds=document.querySelectorAll('.sip.add input');
   function update(){
-    var d=+range.value;out.textContent=fmt(d);
+    var d=+range.value,shift=0;out.textContent=fmt(d);
     document.querySelectorAll('[data-off]').forEach(function(el){
-      var at=d+ +el.dataset.off,t=el.querySelector(':scope > .card .t, :scope > .t');
+      var at=d+ +el.dataset.off+shift,t=el.querySelector(':scope > .card .t');
       if(t)t.textContent=fmt(at);
-      var ok=isOpen(el.dataset.open,at),chips=el.querySelector(':scope > .card .chips')||null,eta=el.querySelector(':scope > .card .eta');
+      var ok=isOpen(el.dataset.open,at),chips=el.querySelector(':scope > .card .chips'),eta=el.querySelector(':scope > .card .eta');
       if(eta)eta.style.background=ok===false?'#E0245E':'';
       if(chips){var w=chips.querySelector('.warn');if(ok===false){if(!w){w=document.createElement('li');w.className='warn';chips.appendChild(w)}w.textContent='Closed at '+fmt(at)}else if(w)w.remove()}
-      if(el.classList.contains('planb')){var p=el.querySelector('p');var s=el.querySelector('.when');if(!s){s=document.createElement('span');s.className='when';p.prepend(s)}s.textContent='You’d arrive ≈ '+fmt(at)+(ok===false?' (closed). ':'. ')}
+      if(el.classList.contains('planb')){var p=el.querySelector('p');var sp=el.querySelector('.when');if(!sp){sp=document.createElement('span');sp.className='when';p.prepend(sp)}sp.textContent='You’d arrive ≈ '+fmt(at)+(ok===false?' (closed). ':'. ')}
+      if(el.classList.contains('end')&&arrive)arrive.textContent=fmt(at);
+      var add=el.querySelector('.sip.add input');
+      if(add){el.classList.toggle('skipped',!add.checked);if(add.checked)shift+= +add.dataset.add}
     });
     store.set('depart',String(d));
   }
   var saved=store.get('depart');if(saved&&!isNaN(+saved))range.value=saved;
+  adds.forEach(function(cb){var v=store.get(cb.id);if(v!==null)cb.checked=v==='1';cb.addEventListener('change',function(){store.set(cb.id,cb.checked?'1':'0');update()})});
   range.addEventListener('input',update);update();
-  document.querySelectorAll('.sip input').forEach(function(cb){
+  document.querySelectorAll('.sip:not(.add) input').forEach(function(cb){
     var li=cb.closest('.stop');cb.checked=store.get(cb.id)==='1';li.classList.toggle('sipped',cb.checked);
     cb.addEventListener('change',function(){li.classList.toggle('sipped',cb.checked);store.set(cb.id,cb.checked?'1':'0')});
   });
+  var tabs=document.querySelectorAll('.tab[data-filter]');
+  function filter(f){
+    tabs.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.filter===f))});
+    document.querySelectorAll('#route > li').forEach(function(li){
+      var k=li.dataset.kind;li.hidden=f!=='all'&&(k?k!==f:true);
+    });
+    store.set('filter',f);
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){filter(b.dataset.filter)})});
+  var sf=store.get('filter');filter(sf==='coffee'||sf==='view'?sf:'all');
 })();
 </script>

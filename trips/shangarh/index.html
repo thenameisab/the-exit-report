@@ -1,220 +1,180 @@
 <title>Shangarh Coffee Run</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Rozha+One&family=Figtree:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Figtree:wght@400;500;600&display=swap">
 <style>
 :root{
-  --paper:#FFF7E8;
-  --card:#FFFFFF;
-  --ink:#1E1B3A;
-  --ink-soft:#57526F;
-  --line:#E9DCC4;
-  --marigold:#F5A302;
-  --magenta:#D81E6C;
-  --teal:#0A7C74;
-  --indigo:#2D2F86;
-  --sky:#35A7E0;
-  --leaf:#3E9B3A;
-  --stone:#FBFAF6;
-  --stone-edge:#CFC7B5;
-  --chip:#FFEFD0;
-  --shadow:0 1px 0 rgba(30,27,58,.06),0 10px 30px -14px rgba(30,27,58,.28);
-  --road:#34324A;
+  --paper:#F2F4F0;--card:#FBFCFA;--ink:#1E2824;--ink-soft:#5D6964;--line:#D9DFD8;--line-soft:#E7EBE5;
+  --accent:#3E5C4E;--accent-2:#5F7F8C;--warn:#9A5A3E;--wash:#E8EDE6;--on-photo:#FBFCFA;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --paper:#13122A;--card:#1D1C3A;--ink:#F6EFE2;--ink-soft:#B8B2CF;--line:#34325A;
-    --marigold:#FFB81F;--magenta:#FF4D94;--teal:#2EC4B6;--indigo:#9FA2FF;--sky:#5CC3F5;--leaf:#6BCB64;
-    --stone:#2A2950;--stone-edge:#4A4878;--chip:#2C2A55;--shadow:0 12px 30px -14px rgba(0,0,0,.7);--road:#0B0A1C;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --paper:#13122A;--card:#1D1C3A;--ink:#F6EFE2;--ink-soft:#B8B2CF;--line:#34325A;
-  --marigold:#FFB81F;--magenta:#FF4D94;--teal:#2EC4B6;--indigo:#9FA2FF;--sky:#5CC3F5;--leaf:#6BCB64;
-  --stone:#2A2950;--stone-edge:#4A4878;--chip:#2C2A55;--shadow:0 12px 30px -14px rgba(0,0,0,.7);--road:#0B0A1C;
-}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --paper:#111714;--card:#171F1B;--ink:#E4E9E3;--ink-soft:#9AA7A0;--line:#2A342F;--line-soft:#212A25;
+  --accent:#9BBBA8;--accent-2:#9DB7C2;--warn:#D29A7C;--wash:#1C2520;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --paper:#111714;--card:#171F1B;--ink:#E4E9E3;--ink-soft:#9AA7A0;--line:#2A342F;--line-soft:#212A25;
+  --accent:#9BBBA8;--accent-2:#9DB7C2;--warn:#D29A7C;--wash:#1C2520;}
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font:16px/1.55 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.65 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+[hidden]{display:none!important}
+.wrap{max-width:980px;margin:0 auto;padding-inline:20px;padding-block:28px 72px}
+.label,.kicker{font:600 11.5px/1.3 Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 
-/* ---------- Hero: truck-art tailboard ---------- */
-.hero{position:relative;margin-top:20px;border-radius:22px;overflow:hidden;background:var(--indigo);color:#FFF7E8;padding:28px 24px 0;isolation:isolate}
-:root[data-theme="dark"] .hero{background:#23246B}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero{background:#23246B}}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.18;
-  background:
-   radial-gradient(circle at 12px 12px,#FFB81F 3px,transparent 3.5px) 0 0/24px 24px;}
-.flag{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:12px/1 Bungee,Impact,sans-serif;letter-spacing:.06em}
-.flag span{background:var(--marigold);color:#1E1B3A;padding:7px 10px;border-radius:999px}
-.flag span:nth-child(2){background:#FF4D94;color:#fff}
-.flag span:nth-child(3){background:#2EC4B6;color:#10103a}
-h1{font:clamp(40px,8vw,86px)/.95 "Rozha One",Georgia,serif;margin:18px 0 6px;text-wrap:balance;letter-spacing:-.01em}
-h1 .arrow{color:var(--marigold);font-family:Bungee,Impact,sans-serif;font-size:.55em;vertical-align:.25em;margin:0 .15em}
-.hero p.sub{max-width:60ch;margin:0 0 20px;color:#E6E3FF;font-size:17px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
-.stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:10px 12px}
-.stat b{display:block;font:22px/1.1 Bungee,Impact,sans-serif;color:#FFD466;font-variant-numeric:tabular-nums}
-.stat small{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#CFCBF5}
-/* scalloped truck-art trim */
-.trim{height:26px;margin:0 -24px;background:
-  radial-gradient(circle at 13px 0,#FF4D94 12px,transparent 12.5px) 0 0/26px 26px repeat-x,
-  linear-gradient(#FFB81F,#FFB81F) 0 0/100% 8px no-repeat}
-.hok{position:absolute;right:18px;top:22px;transform:rotate(8deg);font:13px/1.1 Bungee,Impact,sans-serif;text-align:center;color:#1E1B3A;background:#FFB81F;border:3px solid #FF4D94;border-radius:12px;padding:8px 10px;box-shadow:4px 4px 0 #2EC4B6}
-@media (max-width:640px){.hok{display:none}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* hero */
+.hero{position:relative;border-radius:6px;overflow:hidden;min-height:420px;display:flex;align-items:flex-end;color:var(--on-photo);background:#2c3a33}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 60%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,22,18,.62) 0%,rgba(15,22,18,.25) 55%,rgba(15,22,18,0) 80%),linear-gradient(180deg,rgba(15,22,18,0) 40%,rgba(15,22,18,.45) 100%)}
+.hero-text{position:relative;z-index:1;padding:28px 30px 30px;max-width:640px}
+.hero .label{color:rgba(251,252,250,.85)}
+h1{font:400 clamp(40px,7vw,72px)/1.02 Newsreader,Georgia,serif;margin:10px 0 12px;letter-spacing:-.015em;text-wrap:balance}
+h1 em{font-style:italic;font-weight:300;opacity:.85}
+.hero p.sub{margin:0;font-size:16.5px;color:rgba(251,252,250,.9);max-width:58ch}
+.hero .credit{z-index:1}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line);margin:0}
+.stat{padding:18px 4px 16px;border-right:1px solid var(--line-soft)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font:400 26px/1.1 Newsreader,Georgia,serif;font-variant-numeric:tabular-nums}
+.stat small{font-size:12.5px;color:var(--ink-soft)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(2){border-right:0}.stat{padding-inline:4px}.hero{min-height:360px}.hero-text{padding:22px 20px}}
 
-/* ---------- Tabs (room to grow) ---------- */
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 8px}
-.tab{font:600 14px/1 Figtree,sans-serif;padding:10px 14px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink)}
-.tab[aria-current="page"]{background:var(--ink);color:var(--paper)}
-.tab.soon{border-style:dashed;border-color:var(--stone-edge);color:var(--ink-soft)}
-.tab.soon::after{content:" · soon";font-weight:500}
+/* tabs */
+.tabs{display:flex;gap:4px 22px;flex-wrap:wrap;margin:26px 0 6px;border-bottom:1px solid var(--line)}
+.tab{font:500 14.5px/1 Figtree,sans-serif;padding:12px 0 13px;border:0;border-bottom:2px solid transparent;background:none;color:var(--ink-soft);cursor:pointer;margin-bottom:-1px}
+.tab[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab.soon{cursor:default;color:var(--ink-soft);opacity:.6}
+.tab.soon::after{content:" · soon"}
 
-/* ---------- Departure dial ---------- */
-.dial{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:14px 18px;margin:14px 0 26px;box-shadow:5px 5px 0 var(--marigold)}
-.dial label{font:13px/1 Bungee,Impact,sans-serif;letter-spacing:.05em}
-.dial output{font:28px/1 Bungee,Impact,sans-serif;color:var(--magenta);font-variant-numeric:tabular-nums;min-width:4.2ch}
-.dial input[type=range]{flex:1 1 220px;accent-color:var(--magenta);min-width:0}
-.dial .note{flex-basis:100%;margin:0;color:var(--ink-soft);font-size:14px}
+/* dial */
+.dial{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:18px 0 20px;margin:0 0 30px;border-bottom:1px solid var(--line)}
+.dial label{font:600 11.5px/1 Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.dial output{font:400 30px/1 Newsreader,Georgia,serif;font-variant-numeric:tabular-nums;min-width:3.6ch}
+.dial input[type=range]{flex:1 1 220px;accent-color:var(--accent);min-width:0}
+.dial .note{flex-basis:100%;margin:0;color:var(--ink-soft);font-size:14px;max-width:80ch}
 .dial a.route{margin-left:auto}
 
-/* ---------- Route ---------- */
-.route-list{position:relative;display:grid;gap:26px;padding-left:92px}
-.route-list::before{content:"";position:absolute;left:38px;top:10px;bottom:10px;width:14px;border-radius:7px;background:
-  linear-gradient(var(--marigold) 50%,transparent 0) 50% 0/3px 22px repeat-y,var(--road)}
+/* route */
+.route-list{position:relative;display:grid;gap:30px;padding-left:84px}
+.route-list::before{content:"";position:absolute;left:58px;top:14px;bottom:14px;width:1px;background:var(--line)}
 .stop{position:relative}
-.stone{position:absolute;left:-92px;top:6px;width:66px;text-align:center;font-family:Bungee,Impact,sans-serif}
-.stone .top{height:30px;border-radius:33px 33px 0 0;background:var(--marigold);border:2px solid var(--stone-edge);border-bottom:0;display:grid;place-items:center;font-size:11px;color:#1E1B3A;letter-spacing:.04em}
-.stone .body{background:var(--stone);border:2px solid var(--stone-edge);border-top:0;padding:4px 0 6px;font-size:16px;line-height:1.05;font-variant-numeric:tabular-nums}
-.stone .body small{display:block;font-size:9px;letter-spacing:.08em;color:var(--ink-soft)}
-.stop.hp .stone .top{background:var(--leaf);color:#fff}
-.stop.end .stone .top{background:var(--magenta);color:#fff}
+.stone{position:absolute;left:-84px;top:18px;width:52px;text-align:right;font:500 12px/1.2 Figtree,sans-serif;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.stone::after{content:"";position:absolute;right:-30px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:1.5px solid var(--accent)}
+.stone .top{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.stone .body{font-size:13px;color:var(--ink)}
+.stone .body small{font-size:11px;color:var(--ink-soft);margin-left:2px}
+.stop.view .stone::after{border-color:var(--accent-2);background:var(--accent-2)}
+.stop.end .stone::after{background:var(--accent)}
 
-.card{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--card);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
-.photo{position:relative;min-height:240px;background:var(--chip)}
+.card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--card);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.photo{position:relative;min-height:260px;background:var(--wash)}
 .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.photo .credit{position:absolute;left:8px;bottom:8px;font-size:10.5px;background:rgba(20,18,40,.66);color:#fff;padding:3px 7px;border-radius:6px}
-.eta{position:absolute;top:12px;left:12px;font:15px/1 Bungee,Impact,sans-serif;background:var(--c,var(--magenta));color:#fff;padding:9px 12px;border-radius:12px;box-shadow:3px 3px 0 rgba(0,0,0,.25);font-variant-numeric:tabular-nums}
-.eta small{display:block;font:600 10px/1.2 Figtree,sans-serif;letter-spacing:.08em;opacity:.9;margin-bottom:3px}
-.info{padding:20px 22px 20px;display:flex;flex-direction:column;gap:10px}
-.kicker{font:12px/1 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--c,var(--magenta))}
-.info h2{font:clamp(26px,3.4vw,34px)/1.02 "Rozha One",Georgia,serif;margin:0;text-wrap:balance}
-.where{color:var(--ink-soft);font-size:14px;margin:0}
-.rating{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700}
-.stars{--p:0%;position:relative;display:inline-block;font-size:17px;letter-spacing:2px;line-height:1;color:var(--line)}
+.credit{position:absolute;right:10px;bottom:8px;font-size:10.5px;color:rgba(255,255,255,.85);text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.eta{position:absolute;top:12px;left:12px;font:500 14px/1 Figtree,sans-serif;background:rgba(251,252,250,.92);color:#1E2824;padding:7px 10px;border-radius:3px;font-variant-numeric:tabular-nums}
+.eta small{font-size:10px;letter-spacing:.12em;margin-right:6px;color:#5D6964}
+.eta.closed{background:#F4E6DE;color:#7A3F26}
+.info{padding:24px 26px;display:flex;flex-direction:column;gap:10px}
+.info h2{font:400 clamp(26px,3vw,32px)/1.1 Newsreader,Georgia,serif;margin:0;text-wrap:balance}
+.where{color:var(--ink-soft);font-size:14px;margin:-4px 0 0}
+.rating{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:600;font-size:14.5px}
+.stars{--p:0%;position:relative;display:inline-block;font-size:13px;letter-spacing:2px;line-height:1;color:var(--line)}
 .stars::before{content:"★★★★★"}
-.stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:var(--p);overflow:hidden;color:var(--marigold);white-space:nowrap}
-.rating .n{font-weight:500;color:var(--ink-soft);font-size:14px;font-variant-numeric:tabular-nums}
-.why{margin:0;max-width:60ch}
-.order{margin:0;background:var(--chip);border-radius:12px;padding:10px 12px;font-size:14.5px}
-.order b{font:11px/1 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--c,var(--magenta));display:block;margin-bottom:4px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-.chips li{font-size:12.5px;font-weight:600;border:1.5px solid var(--line);border-radius:999px;padding:4px 10px}
-.chips li.warn{border-color:var(--magenta);color:var(--magenta)}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:4px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;font:700 14px/1 Figtree,sans-serif;text-decoration:none;padding:11px 15px;border-radius:12px;background:var(--ink);color:var(--paper);border:2px solid var(--ink)}
-.btn:hover{background:var(--c,var(--magenta));border-color:var(--c,var(--magenta));color:#fff}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn:focus-visible,.tab:focus-visible,.sip:focus-within{outline:3px solid var(--sky);outline-offset:2px}
-.btn svg{width:16px;height:16px;flex:none}
-.sip{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;cursor:pointer;user-select:none;border-radius:10px;padding:4px 6px}
-.sip input{width:18px;height:18px;accent-color:var(--teal)}
-.stop.sipped .card{outline:3px solid var(--teal);outline-offset:-3px}
-.stop.sipped .eta::after{content:" ✓"}
+.stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:var(--p);overflow:hidden;color:var(--accent);white-space:nowrap}
+.rating .n{font-weight:400;color:var(--ink-soft);font-size:13.5px;font-variant-numeric:tabular-nums}
+.why{margin:0;max-width:62ch;font-size:15.5px}
+.order{margin:2px 0 0;font-size:14.5px;border-left:1px solid var(--accent);padding:0 0 0 12px;color:var(--ink)}
+.order b{display:block;font:600 10.5px/1.6 Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:4px 0;margin:0;padding:0;list-style:none;font-size:13px;color:var(--ink-soft)}
+.chips li+li::before{content:"·";margin:0 8px;color:var(--line)}
+.chips li.warn{color:var(--warn);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:auto;padding-top:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 14px/1 Figtree,sans-serif;text-decoration:none;padding:10px 14px;border-radius:4px;background:var(--accent);color:var(--card);border:1px solid var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink-soft)}
+.btn:focus-visible,.tab:focus-visible,.sip:focus-within{outline:2px solid var(--accent-2);outline-offset:2px}
+.btn svg{width:15px;height:15px;flex:none}
+.sip{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--ink-soft);cursor:pointer;user-select:none}
+.sip input{width:16px;height:16px;accent-color:var(--accent)}
+.stop.sipped .card{border-color:var(--accent)}
+.stop.sipped .eta::after{content:" · done"}
 
-.leg{margin:-8px 0 -8px;padding-left:4px;color:var(--ink-soft);font-size:13.5px;font-weight:600;display:flex;gap:8px;align-items:center}
-.leg::before{content:"";width:18px;height:2px;background:var(--stone-edge)}
+.leg{padding-left:0;margin:-12px 0;color:var(--ink-soft);font-size:13.5px;font-style:italic;font-family:Newsreader,Georgia,serif}
 
-/* plan B */
-.planb{margin-top:14px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;background:var(--card);border:2px dashed var(--stone-edge);border-radius:16px;padding:10px}
-.planb.solo{grid-template-columns:1fr;padding:12px 16px}
-.planb img{width:96px;height:96px;object-fit:cover;border-radius:12px;display:block}
-.planb h3{margin:0 0 2px;font:20px/1.1 "Rozha One",Georgia,serif}
+.planb{margin-top:10px;display:grid;grid-template-columns:72px minmax(0,1fr);gap:14px;align-items:center;border-top:1px solid var(--line-soft);padding:12px 2px 0}
+.planb.solo{grid-template-columns:1fr}
+.planb img{width:72px;height:72px;object-fit:cover;border-radius:4px;display:block}
+.planb h3{margin:0 0 2px;font:400 19px/1.2 Newsreader,Georgia,serif}
 .planb p{margin:0;font-size:14px;color:var(--ink-soft)}
-.planb .tag{font:11px/1 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--teal)}
-.planb a{font-weight:700;color:var(--teal)}
+.planb .tag{font:600 10.5px/1.4 Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.planb a{color:var(--accent);font-weight:600}
+
+/* viewpoints */
+.stop.view .kicker,.stop.view .order b{color:var(--accent-2)}
+.stop.view .order{border-left-color:var(--accent-2)}
+.stop.view.skipped .card{opacity:.55}
+.stampalt{position:absolute;top:12px;right:12px;font:500 12px/1 Figtree,sans-serif;background:rgba(17,23,20,.5);color:#fff;padding:6px 8px;border-radius:3px;font-variant-numeric:tabular-nums}
+.stampalt small{font-size:10px;letter-spacing:.1em;opacity:.8;margin:0 3px}
+.stampalt small:first-child{margin-left:0}
+.sip.add input{accent-color:var(--accent-2)}
 
 /* notes */
-.notes{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.note-card{background:var(--card);border-radius:16px;padding:16px 18px;border-top:6px solid var(--c)}
-.note-card h3{margin:0 0 6px;font:14px/1.2 Bungee,Impact,sans-serif;letter-spacing:.04em;color:var(--c)}
-.note-card p{margin:0;font-size:14.5px}
-footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
+.notes{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;border-top:1px solid var(--line);padding-top:24px}
+.note-card h3{margin:0 0 6px;font:400 20px/1.2 Newsreader,Georgia,serif}
+.note-card p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
 
-.tab{cursor:pointer}
-.tab[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.stop.view .card.postcard{border:2px dashed var(--sky)}
-.stop.view .stone .top{background:var(--sky);color:#fff}
-.stop.view .kicker,.stop.view .order b{color:var(--sky)}
-.stop.view.skipped .card{opacity:.6}
-.stop.view.skipped .eta{background:var(--ink-soft)!important}
-.stampalt{position:absolute;top:10px;right:10px;width:64px;height:70px;display:grid;place-content:center;text-align:center;background:var(--paper);color:var(--ink);font:17px/1.05 Bungee,Impact,sans-serif;border:2px solid var(--sky);outline:4px dotted var(--paper);transform:rotate(6deg);box-shadow:2px 3px 0 rgba(0,0,0,.2)}
-.stampalt small{font-size:9px;letter-spacing:.1em;color:var(--sky)}
-.sip.add input{accent-color:var(--sky)}
-
-.stays{margin-top:48px;display:grid;gap:18px}
-.stays-head h2{font:clamp(34px,5vw,54px)/1 "Rozha One",Georgia,serif;margin:6px 0 8px;text-wrap:balance}
+/* stays */
+.stays{margin-top:56px;display:grid;gap:22px}
+.stays-head h2{font:400 clamp(34px,5vw,48px)/1.05 Newsreader,Georgia,serif;margin:8px 0 10px;text-wrap:balance}
 .stays-head p{margin:0;max-width:62ch;color:var(--ink-soft)}
-.stays-head .kicker{color:var(--leaf)}
-.picks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.picks a{text-decoration:none;background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:8px 12px;font-weight:700;box-shadow:3px 3px 0 var(--leaf)}
-.picks a b{display:block;font:10px/1.2 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--leaf);font-weight:400}
-.stay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.stay{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:16px}
+.picks{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:16px}
+.picks a{text-decoration:none;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:2px}
+.picks a:hover{border-color:var(--accent)}
+.picks a b{display:block;font:600 10.5px/1.5 Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.stay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.stay{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;scroll-margin-top:16px}
 .stay:first-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
-.stay .photo{min-height:220px;aspect-ratio:auto}
-.stay:not(:first-child) .photo{aspect-ratio:16/9;min-height:0}
-.stay .kicker{color:var(--leaf)}
-.stay h3{font:clamp(24px,3vw,30px)/1.05 "Rozha One",Georgia,serif;margin:0}
-.walk{position:absolute;top:12px;left:12px;font:12px/1 Bungee,Impact,sans-serif;letter-spacing:.04em;padding:9px 11px;border-radius:999px;color:#fff;background:var(--leaf);box-shadow:3px 3px 0 rgba(0,0,0,.25)}
-.walk.w1{background:var(--teal)}
-.facts{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
-.price{font:20px/1 Bungee,Impact,sans-serif;color:var(--magenta);font-variant-numeric:tabular-nums}
-.price small{font:600 12px/1 Figtree,sans-serif;color:var(--ink-soft);letter-spacing:0}
-.rt{font-size:13.5px;font-weight:600;color:var(--ink-soft)}
-.watch{margin:0;font-size:14px;border-left:3px solid var(--marigold);padding:2px 0 2px 10px}
-[hidden]{display:none!important}
-.watch > b:first-child{display:block;font:11px/1.3 Bungee,Impact,sans-serif;letter-spacing:.05em;color:var(--marigold)}
+.stay .photo{min-height:240px}
+.stay:not(:first-child) .photo{aspect-ratio:16/10;min-height:0}
+.stay h3{font:400 clamp(24px,3vw,28px)/1.1 Newsreader,Georgia,serif;margin:0}
+.walk{position:absolute;top:12px;left:12px;font:500 12.5px/1 Figtree,sans-serif;padding:7px 10px;border-radius:3px;background:rgba(251,252,250,.92);color:#1E2824}
+.facts{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.price{font:400 21px/1.1 Newsreader,Georgia,serif;font-variant-numeric:tabular-nums}
+.price small{font:400 12.5px/1 Figtree,sans-serif;color:var(--ink-soft)}
+.rt{font-size:13.5px;color:var(--ink-soft)}
+.watch{margin:0;font-size:14px;color:var(--ink-soft);border-left:1px solid var(--line);padding-left:12px}
+.watch > b:first-child{display:block;font:600 10.5px/1.6 Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--warn)}
 .phone{margin:0;font-size:14px;color:var(--ink-soft)}
-.num{font-weight:800;color:var(--ink);user-select:all;font-variant-numeric:tabular-nums;white-space:nowrap}
-.sip.fav input{accent-color:var(--magenta)}
-.stay.faved{outline:3px solid var(--magenta);outline-offset:-3px}
-.stay-note{margin:0;font-size:14px;color:var(--ink-soft);max-width:75ch}
-.stay-extra{margin-top:0}
-@media (max-width:760px){.stay-grid{grid-template-columns:1fr}.stay:first-child{display:flex}.stay:first-child .photo{aspect-ratio:16/9;min-height:0}}
+.num{font-weight:600;color:var(--ink);user-select:all;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stay.faved{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.stay-note{margin:0;font-size:14px;color:var(--ink-soft);max-width:78ch}
 
 @media (max-width:760px){
-  .card{grid-template-columns:1fr}
-  .photo{min-height:0;aspect-ratio:16/10}
-  .route-list{padding-left:60px}
-  .route-list::before{left:20px;width:10px}
-  .stone{left:-60px;width:48px}
-  .stone .top{height:22px;font-size:9px}
-  .stone .body{font-size:13px}
-  .notes{grid-template-columns:1fr}
-}
-@media (prefers-reduced-motion:no-preference){
-  .card{transition:transform .2s ease}
-  .card:hover{transform:translateY(-3px) rotate(-.25deg)}
+  .card,.stay:first-child{grid-template-columns:1fr;display:flex;flex-direction:column}
+  .photo,.stay:first-child .photo{min-height:0;aspect-ratio:16/10}
+  .route-list{padding-left:22px}
+  .route-list::before{left:4px}
+  .stone{position:static;width:auto;text-align:left;display:flex;gap:6px;margin-bottom:8px}
+  .stone .top::after{content:" ·"}
+  .stone::after{right:auto;left:-22px;top:4px}
+  .notes,.stay-grid{grid-template-columns:1fr}
 }
 </style>
 
 <div class="wrap">
   <header class="hero">
-    <div class="hok" aria-hidden="true">HORN<br>OK<br>PLEASE</div>
-    <div class="flag"><span>30 SEP · 05:00</span><span>ROAD TRIP</span><span>CAFFEINE EDITION</span></div>
-    <h1>Gurugram <span class="arrow">→</span> Shangarh</h1>
-    <p class="sub">Five coffee stops and six hill viewpoints on the drive from the NCR plains to a meadow in the Sainj Valley. Your first cup comes about three hours in, and the last one is on a terrace overlooking the Great Himalayan National Park.</p>
-    <div class="stats">
-      <div class="stat"><b>≈540</b><small>km, door to meadow</small></div>
-      <div class="stat"><b id="arriveStat">17:25</b><small>arrive in Shangarh</small></div>
-      <div class="stat"><b>5 + 6</b><small>coffee stops + viewpoints</small></div>
-      <div class="stat"><b>2,100m</b><small>Shangarh altitude</small></div>
+    <img src="img/v-shangarh.jpg" alt="Shangarh meadow with the wooden Shangchul Mahadev temple and deodar forest">
+    <div class="hero-text">
+      <span class="label">Wednesday, 30 September · leaving 05:00</span>
+      <h1>Gurugram <em>to</em> Shangarh</h1>
+      <p class="sub">A long day's drive from the plains to a quiet meadow in the Sainj Valley. Five good coffee stops, six places to pause in the hills, and somewhere to sleep near the grass.</p>
     </div>
-    <div class="trim" aria-hidden="true"></div>
   </header>
+  <div class="stats">
+    <div class="stat"><b>540 km</b><small>door to meadow</small></div>
+    <div class="stat"><b id="arriveStat">17:25</b><small>arrive in Shangarh</small></div>
+    <div class="stat"><b>5 · 6</b><small>coffee stops · viewpoints</small></div>
+    <div class="stat"><b>2,100 m</b><small>at the meadow</small></div>
+  </div>
 
   <nav class="tabs" aria-label="Trip sections">
     <button type="button" class="tab" data-filter="all" aria-pressed="true">Everything</button>
@@ -229,14 +189,14 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
     <label for="depart">Wheels up</label>
     <output id="departOut" for="depart">05:00</output>
     <input id="depart" type="range" min="210" max="480" step="15" value="300" aria-describedby="dialNote">
-    <a class="btn route" id="routeLink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Gurugram,+Haryana/Golden+Hut+Umri+Chowk+Kurukshetra/Barista+Kiratpur+Sahib+NH205/Suket+Cafe+Ner+Chowk/Gateway+homestay+and+cafe+Aut/Shangarh,+Himachal+Pradesh">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>Full route in Maps</a>
-    <p class="note" id="dialNote">Drag to change your start time. Tick or untick viewpoints to add or drop them, and every time after that point shifts. A stop turns pink if you'd reach it while it's closed. Times assume the KMP Expressway, NH44 to Ambala, Kharar–Ropar, then the Kiratpur–Ner Chowk four-lane.</p>
+    <a class="btn ghost route" id="routeLink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Gurugram,+Haryana/Golden+Hut+Umri+Chowk+Kurukshetra/Barista+Kiratpur+Sahib+NH205/Suket+Cafe+Ner+Chowk/Gateway+homestay+and+cafe+Aut/Shangarh,+Himachal+Pradesh">
+      Open full route in Maps</a>
+    <p class="note" id="dialNote">Drag to change your start time. Tick or untick viewpoints to add or drop them, and every time after that point shifts. A stop is marked closed if you'd reach it outside its hours. Times assume the KMP Expressway, NH44 to Ambala, Kharar–Ropar, then the Kiratpur–Ner Chowk four-lane.</p>
   </section>
 
   <ol class="route-list" id="route" style="list-style:none;margin:0">
 
-    <li class="stop" data-kind="coffee" data-off="175" data-open="0000-2400" style="--c:var(--magenta)">
+    <li class="stop" data-kind="coffee" data-off="175" data-open="0000-2400">
       <div class="stone" aria-hidden="true"><div class="top">NH44</div><div class="body">205<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -266,7 +226,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
 
     <li class="leg">Ambala → Zirakpur → Kharar → Ropar · about 2 h 30</li>
 
-    <li class="stop" data-kind="coffee" data-off="345" data-open="0000-2400" style="--c:var(--indigo)">
+    <li class="stop" data-kind="coffee" data-off="345" data-open="0000-2400">
       <div class="stone" aria-hidden="true"><div class="top">NH205</div><div class="body">345<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -292,7 +252,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
 
     <li class="leg">Kiratpur–Ner Chowk four-lane · five tunnels · about 2 h</li>
 
-    <li class="stop view" data-kind="view" data-off="390" style="--c:var(--sky)">
+    <li class="stop view" data-kind="view" data-off="390">
       <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">380<small>KM</small></div></div>
       <article class="card postcard">
         <div class="photo">
@@ -317,7 +277,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </article>
     </li>
 
-    <li class="stop hp" data-kind="coffee" data-off="470" style="--c:var(--teal)">
+    <li class="stop hp" data-kind="coffee" data-off="470">
       <div class="stone" aria-hidden="true"><div class="top">HP</div><div class="body">440<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -347,7 +307,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
 
     <li class="leg">Mandi bypass → Pandoh → Pandoh–Aut twin tunnels · about 1 h 30</li>
 
-    <li class="stop view" data-kind="view" data-off="540" style="--c:var(--sky)">
+    <li class="stop view" data-kind="view" data-off="540">
       <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">465<small>KM</small></div></div>
       <article class="card postcard">
         <div class="photo">
@@ -372,7 +332,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </article>
     </li>
 
-    <li class="stop view" data-kind="view" data-off="565" style="--c:var(--sky)">
+    <li class="stop view" data-kind="view" data-off="565">
       <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">485<small>KM</small></div></div>
       <article class="card postcard">
         <div class="photo">
@@ -397,7 +357,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </article>
     </li>
 
-    <li class="stop view" data-kind="view" data-off="580" style="--c:var(--sky)">
+    <li class="stop view" data-kind="view" data-off="580">
       <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">490<small>KM</small></div></div>
       <article class="card postcard">
         <div class="photo">
@@ -422,7 +382,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </article>
     </li>
 
-    <li class="stop hp" data-kind="coffee" data-off="600" style="--c:var(--sky)">
+    <li class="stop hp" data-kind="coffee" data-off="600">
       <div class="stone" aria-hidden="true"><div class="top">HP</div><div class="body">505<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -447,7 +407,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </article>
     </li>
 
-    <li class="stop view" data-kind="view" data-off="620" style="--c:var(--sky)">
+    <li class="stop view" data-kind="view" data-off="620">
       <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">507<small>KM</small></div></div>
       <article class="card postcard">
         <div class="photo">
@@ -474,7 +434,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
 
     <li class="leg">Sainj → Ropa (GHNP gate) → climb to Shangarh · about 1 h 30, narrow and winding</li>
 
-    <li class="stop end" data-kind="coffee" data-off="720" data-open="0830-2230" style="--c:var(--leaf)">
+    <li class="stop end" data-kind="coffee" data-off="720" data-open="0830-2230">
       <div class="stone" aria-hidden="true"><div class="top">END</div><div class="body">540<small>KM</small></div></div>
       <article class="card">
         <div class="photo">
@@ -501,7 +461,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       </div>
     </li>
 
-    <li class="stop view" data-kind="view" data-off="735" style="--c:var(--sky)">
+    <li class="stop view" data-kind="view" data-off="735">
       <div class="stone" aria-hidden="true"><div class="top">VIEW</div><div class="body">540<small>KM</small></div></div>
       <article class="card postcard">
         <div class="photo">
@@ -638,9 +598,9 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
   </section>
 
   <section class="notes" id="notesBox" aria-label="Road notes">
-    <div class="note-card" style="--c:var(--magenta)"><h3>Why not Murthal?</h3><p>At 05:00 you'll pass Murthal around 06:15. That's too early for a real coffee stop and too soon to need one, so save your appetite for Kurukshetra.</p></div>
-    <div class="note-card" style="--c:var(--teal)"><h3>After Aut</h3><p>The Sainj–Shangarh stretch is single-lane in places. Try to be past Sainj before dark, and fill up at Aut: fuel pumps get scarce after that.</p></div>
-    <div class="note-card" style="--c:var(--marigold)"><h3>Post-monsoon check</h3><p>It's the end of September, so check HP road status for the Mandi–Aut and Sainj stretches the evening before you leave.</p></div>
+    <div class="note-card"><h3>Why not Murthal?</h3><p>At 05:00 you'll pass Murthal around 06:15. That's too early for a real coffee stop and too soon to need one, so save your appetite for Kurukshetra.</p></div>
+    <div class="note-card"><h3>After Aut</h3><p>The Sainj–Shangarh stretch is single-lane in places. Try to be past Sainj before dark, and fill up at Aut: fuel pumps get scarce after that.</p></div>
+    <div class="note-card"><h3>Post-monsoon check</h3><p>It's the end of September, so check HP road status for the Mandi–Aut and Sainj stretches the evening before you leave.</p></div>
   </section>
 
   <footer>Ratings and review counts come from Google Maps listings (via Wanderlog and other aggregators), checked 25 Sep 2026. Viewpoint photos without a named photographer are from Google Maps listings; the Gobind Sagar and Hanogi photos are from Wikimedia Commons (CC BY-SA 4.0). Times and distances are estimates. Hours can change, so confirm on the Maps link before counting on a stop.</footer>
@@ -659,7 +619,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
       var at=d+ +el.dataset.off+shift,t=el.querySelector(':scope > .card .t');
       if(t)t.textContent=fmt(at);
       var ok=isOpen(el.dataset.open,at),chips=el.querySelector(':scope > .card .chips'),eta=el.querySelector(':scope > .card .eta');
-      if(eta)eta.style.background=ok===false?'#E0245E':'';
+      if(eta)eta.classList.toggle('closed',ok===false);
       if(chips){var w=chips.querySelector('.warn');if(ok===false){if(!w){w=document.createElement('li');w.className='warn';chips.appendChild(w)}w.textContent='Closed at '+fmt(at)}else if(w)w.remove()}
       if(el.classList.contains('planb')){var p=el.querySelector('p');var sp=el.querySelector('.when');if(!sp){sp=document.createElement('span');sp.className='when';p.prepend(sp)}sp.textContent='You’d arrive ≈ '+fmt(at)+(ok===false?' (closed). ':'. ')}
       if(el.classList.contains('end')&&arrive)arrive.textContent=fmt(at);

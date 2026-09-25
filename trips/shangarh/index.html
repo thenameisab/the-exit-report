@@ -154,6 +154,37 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
 .stampalt small{font-size:9px;letter-spacing:.1em;color:var(--sky)}
 .sip.add input{accent-color:var(--sky)}
 
+.stays{margin-top:48px;display:grid;gap:18px}
+.stays-head h2{font:clamp(34px,5vw,54px)/1 "Rozha One",Georgia,serif;margin:6px 0 8px;text-wrap:balance}
+.stays-head p{margin:0;max-width:62ch;color:var(--ink-soft)}
+.stays-head .kicker{color:var(--leaf)}
+.picks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.picks a{text-decoration:none;background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:8px 12px;font-weight:700;box-shadow:3px 3px 0 var(--leaf)}
+.picks a b{display:block;font:10px/1.2 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--leaf);font-weight:400}
+.stay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.stay{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:16px}
+.stay:first-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.stay .photo{min-height:220px;aspect-ratio:auto}
+.stay:not(:first-child) .photo{aspect-ratio:16/9;min-height:0}
+.stay .kicker{color:var(--leaf)}
+.stay h3{font:clamp(24px,3vw,30px)/1.05 "Rozha One",Georgia,serif;margin:0}
+.walk{position:absolute;top:12px;left:12px;font:12px/1 Bungee,Impact,sans-serif;letter-spacing:.04em;padding:9px 11px;border-radius:999px;color:#fff;background:var(--leaf);box-shadow:3px 3px 0 rgba(0,0,0,.25)}
+.walk.w1{background:var(--teal)}
+.facts{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.price{font:20px/1 Bungee,Impact,sans-serif;color:var(--magenta);font-variant-numeric:tabular-nums}
+.price small{font:600 12px/1 Figtree,sans-serif;color:var(--ink-soft);letter-spacing:0}
+.rt{font-size:13.5px;font-weight:600;color:var(--ink-soft)}
+.watch{margin:0;font-size:14px;border-left:3px solid var(--marigold);padding:2px 0 2px 10px}
+[hidden]{display:none!important}
+.watch > b:first-child{display:block;font:11px/1.3 Bungee,Impact,sans-serif;letter-spacing:.05em;color:var(--marigold)}
+.phone{margin:0;font-size:14px;color:var(--ink-soft)}
+.num{font-weight:800;color:var(--ink);user-select:all;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sip.fav input{accent-color:var(--magenta)}
+.stay.faved{outline:3px solid var(--magenta);outline-offset:-3px}
+.stay-note{margin:0;font-size:14px;color:var(--ink-soft);max-width:75ch}
+.stay-extra{margin-top:0}
+@media (max-width:760px){.stay-grid{grid-template-columns:1fr}.stay:first-child{display:flex}.stay:first-child .photo{aspect-ratio:16/9;min-height:0}}
+
 @media (max-width:760px){
   .card{grid-template-columns:1fr}
   .photo{min-height:0;aspect-ratio:16/10}
@@ -189,12 +220,12 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
     <button type="button" class="tab" data-filter="all" aria-pressed="true">Everything</button>
     <button type="button" class="tab" data-filter="coffee" aria-pressed="false">Coffee stops</button>
     <button type="button" class="tab" data-filter="view" aria-pressed="false">Viewpoints</button>
-    <span class="tab soon">Stays</span>
+    <button type="button" class="tab" data-filter="stay" aria-pressed="false">Stays</button>
     <span class="tab soon">Things to do</span>
     <span class="tab soon">Packing list</span>
   </nav>
 
-  <section class="dial" aria-label="Departure time">
+  <section class="dial" id="dialBox" aria-label="Departure time">
     <label for="depart">Wheels up</label>
     <output id="departOut" for="depart">05:00</output>
     <input id="depart" type="range" min="210" max="480" step="15" value="300" aria-describedby="dialNote">
@@ -496,7 +527,117 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
     </li>
   </ol>
 
-  <section class="notes" aria-label="Road notes">
+
+  <section class="stays" id="stays" aria-labelledby="staysTitle">
+    <div class="stays-head">
+      <span class="kicker">Night one · Wed 30 Sep</span>
+      <h2 id="staysTitle">Beds by the meadow</h2>
+      <p>Every stay here is within a few minutes’ walk of the Shangarh meadow. They’re ordered from closest and most comfortable to simpler and further away. Tick “Shortlist” on the ones you like.</p>
+      <div class="picks">
+        <a href="#stay-heavenly"><b>Best view</b>Heavenly Retreat</a>
+        <a href="#stay-suhaana"><b>Best value</b>Suhaana Ghar</a>
+        <a href="#stay-zostel"><b>Most social</b>Zostel</a>
+      </div>
+    </div>
+    <div class="stay-grid">
+    <article class="stay" id="stay-heavenly">
+      <div class="photo"><img src="img/s-heavenly.jpg" alt="A suite with a king bed and a floor-to-ceiling window looking out over pine-covered hills" loading="lazy"><span class="walk w0">Edge of the meadow</span><span class="credit">Photo: Heavenly Retreat</span></div>
+      <div class="info">
+        <span class="kicker">Best view · most comfortable</span>
+        <h3>Heavenly Retreat</h3>
+        <p class="where">Mohal, at the edge of Shangarh Meadow</p>
+        <div class="facts"><span class="price">₹2,400–4,400<small>/night with AUTUMNBREAK</small></span><span class="rt">Newer property</span></div>
+        <p class="why">Built right at the meadow edge, and nearly every suite looks straight onto it. Meadow Suites have private balconies facing the grass, and the corner Pavilion Suites get the widest views. It has heated rooms, power backup, an in-house restaurant, a courtyard, and bonfires for ₹500 an hour. It’s family-friendly with free parking, and the easiest drive-up of the lot.</p>
+        <ul class="chips"><li>Meadow-facing balconies</li><li>Room heating</li><li>Restaurant</li><li>Parking</li><li>Family-friendly</li></ul>
+        <p class="watch"><b>Check before booking</b>The AUTUMNBREAK rates (₹3,600 for a Meadow Suite, ₹4,400 for a Pavilion Suite) are for direct bookings only, until 15 Nov. Their Airbnb listing says no Wi-Fi while their own site lists it, so ask if you need to work.</p>
+        <p class="phone">Call or WhatsApp <span class="num">+91 77188 90660</span></p>
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Heavenly+Retreat+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://www.heavenlyretreat.in/">Website</a>
+          <label class="sip fav"><input type="checkbox" id="fav-heavenly">Shortlist</label>
+        </div>
+      </div>
+    </article>
+    <article class="stay" id="stay-suhaana">
+      <div class="photo"><img src="img/s-suhaana.jpg" alt="A wood-panelled double room with a big window onto the hills" loading="lazy"><span class="walk w0">Next to the meadow</span><span class="credit">Photo: Suhaana Ghar</span></div>
+      <div class="info">
+        <span class="kicker">Best value · real homestay</span>
+        <h3>Suhaana Ghar</h3>
+        <p class="where">Goshti village, Shangarh</p>
+        <div class="facts"><span class="price">≈₹1,800<small>/night double</small></span><span class="rt">“Excellent” · about 170 reviews on Google Hotels</span></div>
+        <p class="why">A family-run homestay next to the meadow. Guests keep mentioning the veranda breakfast looking over the meadow and the snow peaks. Hari Om and family cook home-style Himachali food and will walk you round the Shangchul Mahadev temple with the stories behind it.</p>
+        <ul class="chips"><li>Meadow + snow views</li><li>Home-cooked meals</li><li>Local hosts</li><li>Dorm beds too</li></ul>
+        <p class="watch"><b>Check before booking</b>Rooms are simple rather than plush. Ask for a first-floor room for the better view, and confirm parking and how far the car can get.</p>
+        <p class="phone">Call or WhatsApp <span class="num">+91 82404 43268</span></p>
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Suhaana+Ghar+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://suhaanaghar.com/">Website</a>
+          <label class="sip fav"><input type="checkbox" id="fav-suhaana">Shortlist</label>
+        </div>
+      </div>
+    </article>
+    <article class="stay" id="stay-itw">
+      <div class="photo"><img src="img/s-itw.jpg" alt="A wooden veranda with outdoor tables looking over an orchard towards the hills" loading="lazy"><span class="walk w0">Edge of meadow (homestay)</span><span class="credit">Photo: Into The Wild</span></div>
+      <div class="info">
+        <span class="kicker">Same team as Pablo’s Café</span>
+        <h3>Into The Wild</h3>
+        <p class="where">Dharali, Shangarh: a meadow-view homestay, plus a forest cottage and dome up the hill</p>
+        <div class="facts"><span class="price">₹₹<small> · dome ≈₹9,000 with breakfast</small></span><span class="rt">Mostly glowing guest reviews, a few poor ones</span></div>
+        <p class="why">The team behind Pablo’s runs a meadow-view homestay on the edge of the meadow, plus a wooden cottage and a geodesic dome deeper in the forest. Guests love the hosts (Aditya, Lalit, and Pablo the husky) and the home food.</p>
+        <ul class="chips"><li>Meadow-facing rooms</li><li>Pablo’s next door</li><li>Bonfires</li><li>Geodesic dome</li></ul>
+        <p class="watch"><b>Check before booking</b>Book the <b>meadow-view homestay</b> specifically. The forest cottage and dome are a 10-minute uphill walk from the road, which isn’t fun with luggage after a 12-hour drive. One recent review complained about noise and slow service.</p>
+        <p class="phone">Call or WhatsApp <span class="num">+91 96543 88388</span></p>
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Into+The+Wild+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://intothewild.co.in/">Website</a>
+          <label class="sip fav"><input type="checkbox" id="fav-itw">Shortlist</label>
+        </div>
+      </div>
+    </article>
+    <article class="stay" id="stay-zostel">
+      <div class="photo"><img src="img/s-zostel.jpg" alt="A bonfire on a lawn at dusk with pine hills and a colourful sky behind" loading="lazy"><span class="walk w1">Meadow in view</span><span class="credit">Photo: Zostel</span></div>
+      <div class="info">
+        <span class="kicker">Social · great for working</span>
+        <h3>Zostel Shangarh</h3>
+        <p class="where">Dharali village, near Café Stories n’ More</p>
+        <div class="facts"><span class="price">₹1,900–3,000<small>/night private room</small></span><span class="rt">4.6★ (737 on Google) · location 9.3 on Booking.com</span></div>
+        <p class="why">Guests say you can see the meadow from the rooftop common area, and that it’s a short walk down. There are private rooms, including mud-walled ones (reviewers say ask for room 301), hammocks, board games, bonfires and good mobile data. People often stay longer than they planned.</p>
+        <ul class="chips"><li>Mud-walled rooms</li><li>Rooftop lounge</li><li>Good internet</li><li>Bonfires</li></ul>
+        <p class="watch"><b>Check before booking</b>Adults only (18+). No alcohol on the premises, and groups are capped at 8. Rooms are on the small side. Check-in is at 1 PM, which isn’t a problem with your 5 PM arrival.</p>
+        <p class="phone">Book online at zostel.com</p>
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Zostel+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://www.zostel.com/zostel/shangarh/">Book on Zostel</a>
+          <label class="sip fav"><input type="checkbox" id="fav-zostel">Shortlist</label>
+        </div>
+      </div>
+    </article>
+    <article class="stay" id="stay-hidden">
+      <div class="photo"><img src="img/s-hidden.jpg" alt="A small homestay with a green roof in a garden, with forested hills behind" loading="lazy"><span class="walk w1">5-minute walk</span><span class="credit">Photo: Homestays of India</span></div>
+      <div class="info">
+        <span class="kicker">Quiet · by a stream</span>
+        <h3>Hidden Trails Homestay</h3>
+        <p class="where">Katwali village, about a 5-minute walk from the meadow</p>
+        <div class="facts"><span class="price">Enquire<small> · 3 rooms</small></span><span class="rt">Listed on Homestays of India</span></div>
+        <p class="why">A tiny place with two rooms and a small dorm, tucked into the forest beside a mountain stream. Good for birdwatching, stargazing and quiet. It’s close enough to walk to the meadow for sunrise without starting the car.</p>
+        <ul class="chips"><li>Stream-side</li><li>Only 3 rooms</li><li>Forest walks</li></ul>
+        <p class="watch"><b>Check before booking</b>Only one of the two private rooms has an attached bathroom, so ask for the Superior room.</p>
+        <p class="phone">Enquire through Homestays of India</p>
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hidden+Trails+Homestay+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://www.homestaysofindia.com/himachal-shangarh-hidden-trails-homestay/">Enquire</a>
+          <label class="sip fav"><input type="checkbox" id="fav-hidden">Shortlist</label>
+        </div>
+      </div>
+    </article>
+    </div>
+    <div class="planb solo stay-extra">
+      <div><span class="tag">OLD-SCHOOL OPTION</span><h3>Teja Guest House</h3><p>Run by Tej Ram and his wife. It’s a simple local homestay that travel writers describe as closer to the meadow than the hostels. Call directly: <span class="num">+91 98167 31367</span>. There’s no website, so confirm the rate and parking on the phone.</p></div>
+    </div>
+    <p class="stay-note">About the last stretch: Sainj to Shangarh is about 15 km of narrow road with rough patches, and you’ll do it close to dusk. Tell your host your ETA from Aut, since Google Maps is unreliable in the valley and most hosts send a pin or meet you at the Ropa turn-off. Walking times are as described by the properties and their guests.</p>
+  </section>
+
+  <section class="notes" id="notesBox" aria-label="Road notes">
     <div class="note-card" style="--c:var(--magenta)"><h3>Why not Murthal?</h3><p>At 05:00 you'll pass Murthal around 06:15. That's too early for a real coffee stop and too soon to need one, so save your appetite for Kurukshetra.</p></div>
     <div class="note-card" style="--c:var(--teal)"><h3>After Aut</h3><p>The Sainj–Shangarh stretch is single-lane in places. Try to be past Sainj before dark, and fill up at Aut: fuel pumps get scarce after that.</p></div>
     <div class="note-card" style="--c:var(--marigold)"><h3>Post-monsoon check</h3><p>It's the end of September, so check HP road status for the Mandi–Aut and Sainj stretches the evening before you leave.</p></div>
@@ -530,7 +671,7 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
   var saved=store.get('depart');if(saved&&!isNaN(+saved))range.value=saved;
   adds.forEach(function(cb){var v=store.get(cb.id);if(v!==null)cb.checked=v==='1';cb.addEventListener('change',function(){store.set(cb.id,cb.checked?'1':'0');update()})});
   range.addEventListener('input',update);update();
-  document.querySelectorAll('.sip:not(.add) input').forEach(function(cb){
+  document.querySelectorAll('.stop .sip:not(.add) input').forEach(function(cb){
     var li=cb.closest('.stop');cb.checked=store.get(cb.id)==='1';li.classList.toggle('sipped',cb.checked);
     cb.addEventListener('change',function(){li.classList.toggle('sipped',cb.checked);store.set(cb.id,cb.checked?'1':'0')});
   });
@@ -540,9 +681,15 @@ footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
     document.querySelectorAll('#route > li').forEach(function(li){
       var k=li.dataset.kind;li.hidden=f!=='all'&&(k?k!==f:true);
     });
+    var st=document.getElementById('stays');if(st)st.hidden=!(f==='all'||f==='stay');
+    ['route','dialBox','notesBox'].forEach(function(id){var el=document.getElementById(id);if(el)el.hidden=f==='stay'});
     store.set('filter',f);
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){filter(b.dataset.filter)})});
-  var sf=store.get('filter');filter(sf==='coffee'||sf==='view'?sf:'all');
+  var sf=store.get('filter');filter(sf==='coffee'||sf==='view'||sf==='stay'?sf:'all');
+  document.querySelectorAll('.sip.fav input').forEach(function(cb){
+    var card=cb.closest('.stay');cb.checked=store.get(cb.id)==='1';card.classList.toggle('faved',cb.checked);
+    cb.addEventListener('change',function(){card.classList.toggle('faved',cb.checked);store.set(cb.id,cb.checked?'1':'0')});
+  });
 })();
 </script>

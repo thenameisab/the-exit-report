@@ -1,0 +1,370 @@
+<title>Shangarh Coffee Run</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Rozha+One&family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --paper:#FFF7E8;
+  --card:#FFFFFF;
+  --ink:#1E1B3A;
+  --ink-soft:#57526F;
+  --line:#E9DCC4;
+  --marigold:#F5A302;
+  --magenta:#D81E6C;
+  --teal:#0A7C74;
+  --indigo:#2D2F86;
+  --sky:#35A7E0;
+  --leaf:#3E9B3A;
+  --stone:#FBFAF6;
+  --stone-edge:#CFC7B5;
+  --chip:#FFEFD0;
+  --shadow:0 1px 0 rgba(30,27,58,.06),0 10px 30px -14px rgba(30,27,58,.28);
+  --road:#34324A;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#13122A;--card:#1D1C3A;--ink:#F6EFE2;--ink-soft:#B8B2CF;--line:#34325A;
+    --marigold:#FFB81F;--magenta:#FF4D94;--teal:#2EC4B6;--indigo:#9FA2FF;--sky:#5CC3F5;--leaf:#6BCB64;
+    --stone:#2A2950;--stone-edge:#4A4878;--chip:#2C2A55;--shadow:0 12px 30px -14px rgba(0,0,0,.7);--road:#0B0A1C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#13122A;--card:#1D1C3A;--ink:#F6EFE2;--ink-soft:#B8B2CF;--line:#34325A;
+  --marigold:#FFB81F;--magenta:#FF4D94;--teal:#2EC4B6;--indigo:#9FA2FF;--sky:#5CC3F5;--leaf:#6BCB64;
+  --stone:#2A2950;--stone-edge:#4A4878;--chip:#2C2A55;--shadow:0 12px 30px -14px rgba(0,0,0,.7);--road:#0B0A1C;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+
+/* ---------- Hero: truck-art tailboard ---------- */
+.hero{position:relative;margin-top:20px;border-radius:22px;overflow:hidden;background:var(--indigo);color:#FFF7E8;padding:28px 24px 0;isolation:isolate}
+:root[data-theme="dark"] .hero{background:#23246B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero{background:#23246B}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.18;
+  background:
+   radial-gradient(circle at 12px 12px,#FFB81F 3px,transparent 3.5px) 0 0/24px 24px;}
+.flag{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:12px/1 Bungee,Impact,sans-serif;letter-spacing:.06em}
+.flag span{background:var(--marigold);color:#1E1B3A;padding:7px 10px;border-radius:999px}
+.flag span:nth-child(2){background:#FF4D94;color:#fff}
+.flag span:nth-child(3){background:#2EC4B6;color:#10103a}
+h1{font:clamp(40px,8vw,86px)/.95 "Rozha One",Georgia,serif;margin:18px 0 6px;text-wrap:balance;letter-spacing:-.01em}
+h1 .arrow{color:var(--marigold);font-family:Bungee,Impact,sans-serif;font-size:.55em;vertical-align:.25em;margin:0 .15em}
+.hero p.sub{max-width:60ch;margin:0 0 20px;color:#E6E3FF;font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:10px 12px}
+.stat b{display:block;font:22px/1.1 Bungee,Impact,sans-serif;color:#FFD466;font-variant-numeric:tabular-nums}
+.stat small{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#CFCBF5}
+/* scalloped truck-art trim */
+.trim{height:26px;margin:0 -24px;background:
+  radial-gradient(circle at 13px 0,#FF4D94 12px,transparent 12.5px) 0 0/26px 26px repeat-x,
+  linear-gradient(#FFB81F,#FFB81F) 0 0/100% 8px no-repeat}
+.hok{position:absolute;right:18px;top:22px;transform:rotate(8deg);font:13px/1.1 Bungee,Impact,sans-serif;text-align:center;color:#1E1B3A;background:#FFB81F;border:3px solid #FF4D94;border-radius:12px;padding:8px 10px;box-shadow:4px 4px 0 #2EC4B6}
+@media (max-width:640px){.hok{display:none}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- Tabs (room to grow) ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 8px}
+.tab{font:600 14px/1 Figtree,sans-serif;padding:10px 14px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink)}
+.tab[aria-current="page"]{background:var(--ink);color:var(--paper)}
+.tab.soon{border-style:dashed;border-color:var(--stone-edge);color:var(--ink-soft)}
+.tab.soon::after{content:" · soon";font-weight:500}
+
+/* ---------- Departure dial ---------- */
+.dial{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:14px 18px;margin:14px 0 26px;box-shadow:5px 5px 0 var(--marigold)}
+.dial label{font:13px/1 Bungee,Impact,sans-serif;letter-spacing:.05em}
+.dial output{font:28px/1 Bungee,Impact,sans-serif;color:var(--magenta);font-variant-numeric:tabular-nums;min-width:4.2ch}
+.dial input[type=range]{flex:1 1 220px;accent-color:var(--magenta);min-width:0}
+.dial .note{flex-basis:100%;margin:0;color:var(--ink-soft);font-size:14px}
+.dial a.route{margin-left:auto}
+
+/* ---------- Route ---------- */
+.route-list{position:relative;display:grid;gap:26px;padding-left:92px}
+.route-list::before{content:"";position:absolute;left:38px;top:10px;bottom:10px;width:14px;border-radius:7px;background:
+  linear-gradient(var(--marigold) 50%,transparent 0) 50% 0/3px 22px repeat-y,var(--road)}
+.stop{position:relative}
+.stone{position:absolute;left:-92px;top:6px;width:66px;text-align:center;font-family:Bungee,Impact,sans-serif}
+.stone .top{height:30px;border-radius:33px 33px 0 0;background:var(--marigold);border:2px solid var(--stone-edge);border-bottom:0;display:grid;place-items:center;font-size:11px;color:#1E1B3A;letter-spacing:.04em}
+.stone .body{background:var(--stone);border:2px solid var(--stone-edge);border-top:0;padding:4px 0 6px;font-size:16px;line-height:1.05;font-variant-numeric:tabular-nums}
+.stone .body small{display:block;font-size:9px;letter-spacing:.08em;color:var(--ink-soft)}
+.stop.hp .stone .top{background:var(--leaf);color:#fff}
+.stop.end .stone .top{background:var(--magenta);color:#fff}
+
+.card{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--card);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.photo{position:relative;min-height:240px;background:var(--chip)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.photo .credit{position:absolute;left:8px;bottom:8px;font-size:10.5px;background:rgba(20,18,40,.66);color:#fff;padding:3px 7px;border-radius:6px}
+.eta{position:absolute;top:12px;left:12px;font:15px/1 Bungee,Impact,sans-serif;background:var(--c,var(--magenta));color:#fff;padding:9px 12px;border-radius:12px;box-shadow:3px 3px 0 rgba(0,0,0,.25);font-variant-numeric:tabular-nums}
+.eta small{display:block;font:600 10px/1.2 Figtree,sans-serif;letter-spacing:.08em;opacity:.9;margin-bottom:3px}
+.info{padding:20px 22px 20px;display:flex;flex-direction:column;gap:10px}
+.kicker{font:12px/1 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--c,var(--magenta))}
+.info h2{font:clamp(26px,3.4vw,34px)/1.02 "Rozha One",Georgia,serif;margin:0;text-wrap:balance}
+.where{color:var(--ink-soft);font-size:14px;margin:0}
+.rating{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700}
+.stars{--p:0%;position:relative;display:inline-block;font-size:17px;letter-spacing:2px;line-height:1;color:var(--line)}
+.stars::before{content:"★★★★★"}
+.stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:var(--p);overflow:hidden;color:var(--marigold);white-space:nowrap}
+.rating .n{font-weight:500;color:var(--ink-soft);font-size:14px;font-variant-numeric:tabular-nums}
+.why{margin:0;max-width:60ch}
+.order{margin:0;background:var(--chip);border-radius:12px;padding:10px 12px;font-size:14.5px}
+.order b{font:11px/1 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--c,var(--magenta));display:block;margin-bottom:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.chips li{font-size:12.5px;font-weight:600;border:1.5px solid var(--line);border-radius:999px;padding:4px 10px}
+.chips li.warn{border-color:var(--magenta);color:var(--magenta)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:4px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 14px/1 Figtree,sans-serif;text-decoration:none;padding:11px 15px;border-radius:12px;background:var(--ink);color:var(--paper);border:2px solid var(--ink)}
+.btn:hover{background:var(--c,var(--magenta));border-color:var(--c,var(--magenta));color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,.tab:focus-visible,.sip:focus-within{outline:3px solid var(--sky);outline-offset:2px}
+.btn svg{width:16px;height:16px;flex:none}
+.sip{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;cursor:pointer;user-select:none;border-radius:10px;padding:4px 6px}
+.sip input{width:18px;height:18px;accent-color:var(--teal)}
+.stop.sipped .card{outline:3px solid var(--teal);outline-offset:-3px}
+.stop.sipped .eta::after{content:" ✓"}
+
+.leg{margin:-8px 0 -8px;padding-left:4px;color:var(--ink-soft);font-size:13.5px;font-weight:600;display:flex;gap:8px;align-items:center}
+.leg::before{content:"";width:18px;height:2px;background:var(--stone-edge)}
+
+/* plan B */
+.planb{margin-top:14px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;background:var(--card);border:2px dashed var(--stone-edge);border-radius:16px;padding:10px}
+.planb.solo{grid-template-columns:1fr;padding:12px 16px}
+.planb img{width:96px;height:96px;object-fit:cover;border-radius:12px;display:block}
+.planb h3{margin:0 0 2px;font:20px/1.1 "Rozha One",Georgia,serif}
+.planb p{margin:0;font-size:14px;color:var(--ink-soft)}
+.planb .tag{font:11px/1 Bungee,Impact,sans-serif;letter-spacing:.06em;color:var(--teal)}
+.planb a{font-weight:700;color:var(--teal)}
+
+/* notes */
+.notes{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.note-card{background:var(--card);border-radius:16px;padding:16px 18px;border-top:6px solid var(--c)}
+.note-card h3{margin:0 0 6px;font:14px/1.2 Bungee,Impact,sans-serif;letter-spacing:.04em;color:var(--c)}
+.note-card p{margin:0;font-size:14.5px}
+footer{margin-top:28px;color:var(--ink-soft);font-size:13px;max-width:75ch}
+
+@media (max-width:760px){
+  .card{grid-template-columns:1fr}
+  .photo{min-height:0;aspect-ratio:16/10}
+  .route-list{padding-left:60px}
+  .route-list::before{left:20px;width:10px}
+  .stone{left:-60px;width:48px}
+  .stone .top{height:22px;font-size:9px}
+  .stone .body{font-size:13px}
+  .notes{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .card{transition:transform .2s ease}
+  .card:hover{transform:translateY(-3px) rotate(-.25deg)}
+}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hok" aria-hidden="true">HORN<br>OK<br>PLEASE</div>
+    <div class="flag"><span>30 SEP · 05:00</span><span>ROAD TRIP</span><span>CAFFEINE EDITION</span></div>
+    <h1>Gurugram <span class="arrow">→</span> Shangarh</h1>
+    <p class="sub">Five coffee stops, plus three backups, on the drive from the NCR plains to a meadow in the Sainj Valley. Your first cup comes about three hours in, and the last one is on a terrace overlooking the Great Himalayan National Park.</p>
+    <div class="stats">
+      <div class="stat"><b>≈540</b><small>km, door to meadow</small></div>
+      <div class="stat"><b>≈12h</b><small>with coffee breaks</small></div>
+      <div class="stat"><b>5+3</b><small>stops + backups</small></div>
+      <div class="stat"><b>2,100m</b><small>Shangarh altitude</small></div>
+    </div>
+    <div class="trim" aria-hidden="true"></div>
+  </header>
+
+  <nav class="tabs" aria-label="Trip sections">
+    <span class="tab" aria-current="page">Coffee stops</span>
+    <span class="tab soon">Stays</span>
+    <span class="tab soon">Things to do</span>
+    <span class="tab soon">Packing list</span>
+  </nav>
+
+  <section class="dial" aria-label="Departure time">
+    <label for="depart">Wheels up</label>
+    <output id="departOut" for="depart">05:00</output>
+    <input id="depart" type="range" min="210" max="480" step="15" value="300" aria-describedby="dialNote">
+    <a class="btn route" id="routeLink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Gurugram,+Haryana/Golden+Hut+Umri+Chowk+Kurukshetra/Barista+Kiratpur+Sahib+NH205/Suket+Cafe+Ner+Chowk/Gateway+homestay+and+cafe+Aut/Shangarh,+Himachal+Pradesh">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>Full route in Maps</a>
+    <p class="note" id="dialNote">Drag to change your start time. Arrival times update, and a stop turns pink if you'd reach it while it's closed. Times assume the KMP Expressway, NH44 to Ambala, Kharar–Ropar, then the Kiratpur–Ner Chowk four-lane.</p>
+  </section>
+
+  <ol class="route-list" id="route" style="list-style:none;margin:0">
+
+    <li class="stop" data-off="175" data-open="0000-2400" style="--c:var(--magenta)">
+      <div class="stone" aria-hidden="true"><div class="top">NH44</div><div class="body">205<small>KM</small></div></div>
+      <article class="card">
+        <div class="photo">
+          <img src="img/goldenhut.jpg" alt="Golden Hut's long yellow-and-red frontage with a big car park on NH44" loading="lazy">
+          <div class="eta"><small>ARRIVE ≈</small><span class="t">07:55</span></div>
+          <span class="credit">Photo: Google Maps listing</span>
+        </div>
+        <div class="info">
+          <span class="kicker">First cup · 3 hours in</span>
+          <h2>Golden Hut</h2>
+          <p class="where">Umri Chowk, NH44 · Kurukshetra, Haryana</p>
+          <div class="rating"><span class="stars" style="--p:88%" aria-label="4.4 out of 5"></span>4.4<span class="n">15,900 Google reviews</span></div>
+          <p class="why">This is the stop that's actually open at 8 AM on a weekday. It runs 24 hours and has a Tandoori Chai counter, an in-house coffee bar, a Dosa Plaza kiosk, clean washrooms and EV chargers, all on the left side of the highway heading north.</p>
+          <p class="order"><b>Order this</b>Cappuccino for the driver, a kulhad of tandoori chai for everyone else, plus a plate of their paneer paratha.</p>
+          <ul class="chips"><li>Open 24 h</li><li>Huge parking</li><li>EV charging</li><li>Washrooms</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Golden+Hut+Umri+Chowk+Kurukshetra&amp;query_place_id=ChIJz7HWx0ZBDjkRdsesr_pDEnw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip"><input type="checkbox" id="sip-goldenhut">Sipped</label>
+          </div>
+        </div>
+      </article>
+      <div class="planb" data-off="195" data-open="0900-2345">
+        <img src="img/starbucks.jpg" alt="A Starbucks frappuccino">
+        <div><span class="tag">SKIP UNLESS RUNNING LATE</span><h3>Starbucks, NDI Plaza Mohra</h3><p>4.4★ (1,187) on NH44 just before Ambala, but it opens at 9 AM, so it only works if you leave after about 05:45. <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Starbucks+NDI+Plaza+Mohra+Ambala">Map</a></p></div>
+      </div>
+    </li>
+
+    <li class="leg">Ambala → Zirakpur → Kharar → Ropar · about 2 h 30</li>
+
+    <li class="stop" data-off="345" data-open="0000-2400" style="--c:var(--indigo)">
+      <div class="stone" aria-hidden="true"><div class="top">NH205</div><div class="body">345<small>KM</small></div></div>
+      <article class="card">
+        <div class="photo">
+          <img src="img/barista.jpg" alt="Glass-fronted Barista café with a '0 km ahead' sign, lit up at dusk" loading="lazy">
+          <div class="eta"><small>ARRIVE ≈</small><span class="t">10:45</span></div>
+          <span class="credit">Photo: Google Maps listing</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Last espresso before the hills</span>
+          <h2>Barista, Kiratpur Sahib</h2>
+          <p class="where">Kiratpur–Manali Rd (NH205), next to an Indian Oil pump · Punjab</p>
+          <div class="rating"><span class="stars" style="--p:88%" aria-label="4.4 out of 5"></span>4.4<span class="n">262 Google reviews</span></div>
+          <p class="why">Regulars heading to Manali swear by this one. It's about five minutes after the Anandpur Sahib flyover split, on your left. Fill the tank, use the spotless washrooms, and grab a proper espresso before the four-lane starts climbing through the tunnels.</p>
+          <p class="order"><b>Order this</b>Iced Caffè Mocha for the tunnels, plus a slice of marble cake to go.</p>
+          <ul class="chips"><li>Open 24 h</li><li>Fuel on site</li><li>Outdoor seats</li><li>Women-owned</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Barista+Kiratpur+Sahib+NH205"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip"><input type="checkbox" id="sip-barista">Sipped</label>
+          </div>
+        </div>
+      </article>
+    </li>
+
+    <li class="leg">Kiratpur–Ner Chowk four-lane · tunnels, Gobind Sagar views · about 2 h</li>
+
+    <li class="stop hp" data-off="470" style="--c:var(--teal)">
+      <div class="stone" aria-hidden="true"><div class="top">HP</div><div class="body">440<small>KM</small></div></div>
+      <article class="card">
+        <div class="photo">
+          <img src="img/suket.jpg" alt="Suket Café's shopfront at night in Ner Chowk market" loading="lazy">
+          <div class="eta"><small>ARRIVE ≈</small><span class="t">12:50</span></div>
+          <span class="credit">Photo: Wanderlog / Google</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Lunch + a local favourite</span>
+          <h2>Suket Café</h2>
+          <p class="where">Rana Market, Ner Chowk · Mandi district, HP</p>
+          <div class="rating"><span class="stars" style="--p:90%" aria-label="4.5 out of 5"></span>4.5<span class="n">265 Google reviews</span></div>
+          <p class="why">A small, cosy café run by local women, sitting right where the four-lane ends. Road-trippers stumble on it and write glowing reviews about the cakes. It moved recently and now sits above Hunger Point, a minute's walk from the medical college.</p>
+          <p class="order"><b>Order this</b>Cappuccino and the walnut cake. If it's lunchtime, add the farm-fresh pizza and a peach iced tea.</p>
+          <ul class="chips"><li>Self-service</li><li>Fresh-baked cakes</li><li>Pick-your-music</li><li>Recently moved</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Suket+Cafe+Ner+Chowk&amp;query_place_id=ChIJhU-75AAfBTkRJNKfMs3wJaU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip"><input type="checkbox" id="sip-suket">Sipped</label>
+          </div>
+        </div>
+      </article>
+      <div class="planb" data-off="515" data-open="0800-2200">
+        <img src="img/locale.jpg" alt="Collage of Locale Café's interior and shopfront">
+        <div><span class="tag">PLAN B · MANDI · 25 KM ON</span><h3>Locale Café &amp; Restaurant</h3><p>4.6★ (≈200), open 8 AM–10 PM, near Phoenix School in Mandi. Reviewers call it a must-stop for chai and a chat on the Chandigarh–Manali run. <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Locale+Cafe+and+Restaurant+Mandi">Map</a></p></div>
+      </div>
+    </li>
+
+    <li class="leg">Mandi → Pandoh Dam → Beas gorge · about 1 h 30</li>
+
+    <li class="stop hp" data-off="600" style="--c:var(--sky)">
+      <div class="stone" aria-hidden="true"><div class="top">HP</div><div class="body">505<small>KM</small></div></div>
+      <article class="card">
+        <div class="photo">
+          <img src="img/larji.jpg" alt="Mountains reflected in the still, glassy water of Larji reservoir" loading="lazy">
+          <div class="eta"><small>ARRIVE ≈</small><span class="t">15:00</span></div>
+          <span class="credit">Photo: Gateway Café</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Rooftop by Larji Dam</span>
+          <h2>Gateway Café</h2>
+          <p class="where">Aut–Banjar Rd, right at the Aut tunnel turn-off · Mandi district, HP</p>
+          <div class="rating"><span class="stars" style="--p:84%" aria-label="4.2 out of 5"></span>4.2<span class="n">349 Google reviews</span></div>
+          <p class="why">It sits exactly where you leave the Manali highway for the Sainj road, so there's no detour. Take the rooftop seats above the Larji reservoir. This is your last proper coffee-and-washroom stop before the valley road narrows.</p>
+          <p class="order"><b>Order this</b>Hot coffee and something from their bakery. If you skipped lunch, get an aloo-pyaaz paratha from the bhojnalaya downstairs.</p>
+          <ul class="chips"><li>Rooftop view</li><li>Bakery</li><li>Fireplace</li><li>No detour</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gateway+homestay+and+cafe+Aut"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.gatewaycafe.in/">Menu</a>
+            <label class="sip"><input type="checkbox" id="sip-gateway">Sipped</label>
+          </div>
+        </div>
+      </article>
+    </li>
+
+    <li class="leg">Larji → Sainj → climb to Shangarh · about 1 h 45, narrow and winding</li>
+
+    <li class="stop end" data-off="720" data-open="0830-2230" style="--c:var(--leaf)">
+      <div class="stone" aria-hidden="true"><div class="top">END</div><div class="body">540<small>KM</small></div></div>
+      <article class="card">
+        <div class="photo">
+          <img src="img/pablos.jpg" alt="Friends in cane chairs on Pablo's terrace, looking out over the green Shangarh meadow and forested hills" loading="lazy">
+          <div class="eta"><small>ARRIVE ≈</small><span class="t">17:00</span></div>
+          <span class="credit">Photo: Pablo's Café</span>
+        </div>
+        <div class="info">
+          <span class="kicker">Victory coffee · sunset over the meadow</span>
+          <h2>Pablo's Café</h2>
+          <p class="where">Dhara Pathara, Shangarh · Sainj, Kullu, HP</p>
+          <div class="rating"><span class="stars" style="--p:94%" aria-label="4.7 out of 5"></span>4.7<span class="n">Google rating</span></div>
+          <p class="why">Cane chairs on a terrace looking straight onto the Shangarh meadow and the national park's ridgelines. Reviewers say to settle in, since everything is cooked fresh and can take a while, and to ask Lalit for a local legend. Sunset is around 18:10.</p>
+          <p class="order"><b>Order this</b>Their thick hot chocolate or a cold coffee. If you're staying for dinner, try the Pahadi rajma or the kadhi chawal.</p>
+          <ul class="chips"><li>8:30 AM – 10:30 PM</li><li>Meadow view</li><li>Work-friendly</li></ul>
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Pablo%27s+Cafe+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
+            <label class="sip"><input type="checkbox" id="sip-pablos">Sipped</label>
+          </div>
+        </div>
+      </article>
+      <div class="planb solo">
+        <div><span class="tag">ALSO IN SHANGARH</span><h3>Café Stories n' More</h3><p>Near Zostel, in Dharali village. Board games, hand-beaten hot coffee, oats pancakes and two resident dogs, Butter and Fly. Recent reviews are mixed, so treat it as a second option. <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Cafe+Stories+n+More+Shangarh">Map</a></p></div>
+      </div>
+    </li>
+  </ol>
+
+  <section class="notes" aria-label="Road notes">
+    <div class="note-card" style="--c:var(--magenta)"><h3>Why not Murthal?</h3><p>At 05:00 you'll pass Murthal around 06:15. That's too early for a real coffee stop and too soon to need one, so save your appetite for Kurukshetra.</p></div>
+    <div class="note-card" style="--c:var(--teal)"><h3>After Aut</h3><p>The Sainj–Shangarh stretch is single-lane in places. Try to be past Sainj before dark, and fill up at Aut: fuel pumps get scarce after that.</p></div>
+    <div class="note-card" style="--c:var(--marigold)"><h3>Post-monsoon check</h3><p>It's the end of September, so check HP road status for the Mandi–Aut and Sainj stretches the evening before you leave.</p></div>
+  </section>
+
+  <footer>Ratings and review counts come from Google Maps listings (via Wanderlog and other aggregators), checked 25 Sep 2026. Times and distances are estimates. Hours can change, so confirm on the Maps link before counting on a stop.</footer>
+</div>
+
+<script>
+(function(){
+  var range=document.getElementById('depart'),out=document.getElementById('departOut');
+  var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+  function fmt(m){m=((m%1440)+1440)%1440;var h=Math.floor(m/60),mm=m%60;return (h<10?'0':'')+h+':'+(mm<10?'0':'')+mm}
+  function isOpen(win,m){if(!win)return null;var a=+win.slice(0,2)*60+ +win.slice(2,4),b=+win.slice(5,7)*60+ +win.slice(7,9);m=m%1440;return m>=a&&m<b}
+  function update(){
+    var d=+range.value;out.textContent=fmt(d);
+    document.querySelectorAll('[data-off]').forEach(function(el){
+      var at=d+ +el.dataset.off,t=el.querySelector(':scope > .card .t, :scope > .t');
+      if(t)t.textContent=fmt(at);
+      var ok=isOpen(el.dataset.open,at),chips=el.querySelector(':scope > .card .chips')||null,eta=el.querySelector(':scope > .card .eta');
+      if(eta)eta.style.background=ok===false?'#E0245E':'';
+      if(chips){var w=chips.querySelector('.warn');if(ok===false){if(!w){w=document.createElement('li');w.className='warn';chips.appendChild(w)}w.textContent='Closed at '+fmt(at)}else if(w)w.remove()}
+      if(el.classList.contains('planb')){var p=el.querySelector('p');var s=el.querySelector('.when');if(!s){s=document.createElement('span');s.className='when';p.prepend(s)}s.textContent='You’d arrive ≈ '+fmt(at)+(ok===false?' (closed). ':'. ')}
+    });
+    store.set('depart',String(d));
+  }
+  var saved=store.get('depart');if(saved&&!isNaN(+saved))range.value=saved;
+  range.addEventListener('input',update);update();
+  document.querySelectorAll('.sip input').forEach(function(cb){
+    var li=cb.closest('.stop');cb.checked=store.get(cb.id)==='1';li.classList.toggle('sipped',cb.checked);
+    cb.addEventListener('change',function(){li.classList.toggle('sipped',cb.checked);store.set(cb.id,cb.checked?'1':'0')});
+  });
+})();
+</script>

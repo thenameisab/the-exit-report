@@ -148,6 +148,65 @@ footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
 .stay.faved{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .stay-note{margin:0;font-size:14px;color:var(--ink-soft);max-width:78ch}
 
+/* booked stay */
+.booked{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);background:var(--card);border:1px solid var(--accent);border-radius:6px;overflow:hidden}
+.booked h3{font:400 clamp(28px,3.4vw,36px)/1.05 Newsreader,Georgia,serif;margin:0}
+.booked .walk{background:var(--accent);color:var(--card)}
+.pay{display:grid;gap:4px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:10px 0;margin:4px 0}
+.pay-row{display:flex;justify-content:space-between;font-size:14.5px;color:var(--ink-soft)}
+.pay-row b{font:400 18px/1.2 Newsreader,Georgia,serif;color:var(--ink);font-variant-numeric:tabular-nums}
+.pay-row.due span{color:var(--warn)}
+.pay-row.due b{color:var(--warn)}
+.bar{height:4px;background:var(--line-soft);border-radius:2px;overflow:hidden;margin-top:6px}
+.bar span{display:block;height:100%;background:var(--accent);transition:width .3s}
+.todo-mini{margin:0;padding-left:18px;font-size:14.5px;display:grid;gap:4px}
+.todo-mini li::marker{color:var(--accent)}
+.next-nights{border-top:1px solid var(--line);padding-top:22px;display:grid;gap:16px}
+.nn-head h3{font:400 clamp(24px,3vw,30px)/1.1 Newsreader,Georgia,serif;margin:6px 0 8px}
+.nn-head p{margin:0 0 8px;max-width:70ch}
+.nn-head .alt{color:var(--ink-soft);font-size:14.5px}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.opt{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.opt h4{font:400 21px/1.15 Newsreader,Georgia,serif;margin:2px 0 0}
+.opt p{margin:0;font-size:14px}
+.opt .where{margin:0}
+.opt-price{color:var(--ink-soft)}
+.opt-links{margin-top:auto!important;padding-top:6px}
+.opt-links a,.maplink{color:var(--accent);font-weight:600;font-size:13.5px}
+.older{border-top:1px solid var(--line);padding-top:14px}
+.older summary{cursor:pointer;font:400 19px/1.3 Newsreader,Georgia,serif;color:var(--ink-soft);padding:4px 0}
+.older[open] summary{margin-bottom:16px}
+/* things to do */
+.plan{margin-top:56px;display:grid;gap:22px}
+.days{display:grid;gap:8px}
+.day{display:grid;grid-template-columns:180px minmax(0,1fr);gap:20px;border-top:1px solid var(--line);padding:20px 0 8px}
+.day-head h3{font:400 24px/1.15 Newsreader,Georgia,serif;margin:4px 0 0}
+.day-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.day-list li{display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px}
+.day-list .t{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;padding-top:2px}
+.day-list b{font-weight:600}
+.day-list p{margin:2px 0 0;font-size:14.5px;color:var(--ink-soft);max-width:66ch}
+/* packing */
+.pack-progress{display:flex;align-items:center;gap:14px;margin-top:14px;max-width:420px}
+.pack-progress .bar{flex:1;margin:0}
+#packCount{font-size:13.5px;color:var(--ink-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pgroups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+.pgroup{border-top:1px solid var(--line);padding-top:14px}
+.pg-head{display:flex;justify-content:space-between;align-items:baseline}
+.pg-head h3{font:400 22px/1.2 Newsreader,Georgia,serif;margin:0 0 6px}
+.pg-count{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.plist{list-style:none;margin:0;padding:0}
+.plist label{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line-soft);font-size:14.5px;cursor:pointer}
+.plist input{width:16px;height:16px;margin-top:3px;accent-color:var(--accent);flex:none}
+.plist input:checked + span{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--line)}
+.plist em{margin-left:auto;font-style:normal;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap;padding-top:3px}
+@media (max-width:760px){
+  .booked{grid-template-columns:1fr}.booked .photo{aspect-ratio:16/10;min-height:0}
+  .opts,.pgroups{grid-template-columns:1fr}
+  .day{grid-template-columns:1fr;gap:8px}
+  .day-list li{grid-template-columns:64px minmax(0,1fr)}
+}
+
 @media (max-width:760px){
   .card,.stay:first-child{grid-template-columns:1fr;display:flex;flex-direction:column}
   .photo,.stay:first-child .photo{min-height:0;aspect-ratio:16/10}
@@ -164,9 +223,9 @@ footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
   <header class="hero">
     <img src="img/v-shangarh.jpg" alt="Shangarh meadow with the wooden Shangchul Mahadev temple and deodar forest">
     <div class="hero-text">
-      <span class="label">Wednesday, 30 September · leaving 05:00</span>
+      <span class="label">30 September – 4 October · leaving 05:00</span>
       <h1>Gurugram <em>to</em> Shangarh</h1>
-      <p class="sub">A long day's drive from the plains to a quiet meadow in the Sainj Valley. Five good coffee stops, six places to pause in the hills, and somewhere to sleep near the grass.</p>
+      <p class="sub">A long day’s drive from the plains to a quiet meadow in the Sainj Valley, two nights at Suhaana Ghar, then down to the rivers of Jibhi before heading home on the 4th.</p>
     </div>
   </header>
   <div class="stats">
@@ -180,9 +239,9 @@ footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
     <button type="button" class="tab" data-filter="all" aria-pressed="true">Everything</button>
     <button type="button" class="tab" data-filter="coffee" aria-pressed="false">Coffee stops</button>
     <button type="button" class="tab" data-filter="view" aria-pressed="false">Viewpoints</button>
-    <button type="button" class="tab" data-filter="stay" aria-pressed="false">Stays</button>
-    <span class="tab soon">Things to do</span>
-    <span class="tab soon">Packing list</span>
+    <button type="button" class="tab" data-filter="stay" aria-pressed="false">Stay</button>
+    <button type="button" class="tab" data-filter="todo" aria-pressed="false">Things to do</button>
+    <button type="button" class="tab" data-filter="pack" aria-pressed="false">Packing list</button>
   </nav>
 
   <section class="dial" id="dialBox" aria-label="Departure time">
@@ -490,15 +549,73 @@ footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
 
   <section class="stays" id="stays" aria-labelledby="staysTitle">
     <div class="stays-head">
-      <span class="kicker">Night one · Wed 30 Sep</span>
-      <h2 id="staysTitle">Beds by the meadow</h2>
-      <p>Every stay here is within a few minutes’ walk of the Shangarh meadow. They’re ordered from closest and most comfortable to simpler and further away. Tick “Shortlist” on the ones you like.</p>
-      <div class="picks">
-        <a href="#stay-heavenly"><b>Best view</b>Heavenly Retreat</a>
-        <a href="#stay-suhaana"><b>Best value</b>Suhaana Ghar</a>
-        <a href="#stay-zostel"><b>Most social</b>Zostel</a>
+      <span class="kicker">Where you’re sleeping</span>
+      <h2 id="staysTitle">Two nights by the meadow</h2>
+    </div>
+
+    <article class="booked">
+      <div class="photo"><img src="img/s-suhaana.jpg" alt="A wood-panelled double room at Suhaana Ghar with a big window onto the hills" loading="lazy"><span class="walk">Booked</span><span class="credit">Photo: Suhaana Ghar</span></div>
+      <div class="info">
+        <span class="kicker">Wed 30 Sep → Fri 2 Oct · 2 nights</span>
+        <h3>Suhaana Ghar</h3>
+        <p class="where">Goshti village, Shangarh · next to the meadow</p>
+        <div class="pay" aria-label="Payment status">
+          <div class="pay-row"><span>Total</span><b>₹3,400</b></div>
+          <div class="pay-row"><span>Paid in advance</span><b>₹1,500</b></div>
+          <div class="pay-row due"><span>Due at the homestay</span><b>₹1,900</b></div>
+          <div class="bar"><span style="width:44%"></span></div>
+        </div>
+        <ul class="todo-mini">
+          <li>Message your ETA from Aut (around 15:00). Google Maps is patchy up here, so ask for a pin or a meeting point at the Ropa turn-off.</li>
+          <li>Ask for a first-floor room. Guests say it has the better meadow view.</li>
+          <li>Carry the ₹1,900 balance in cash. Mobile data can drop out, so UPI may not work.</li>
+          <li>Order dinner for the first night when you message. You’ll arrive tired.</li>
+        </ul>
+        <p class="phone">Call or WhatsApp <span class="num">+91 82404 43268</span> · <span class="num">+91 90737 57780</span></p>
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Suhaana+Ghar+Shangarh">Google Maps</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://suhaanaghar.com/">Website</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="next-nights">
+      <div class="nn-head">
+        <span class="kicker">Fri 2 Oct → Sun 4 Oct · still open</span>
+        <h3>The last two nights: move down to Jibhi</h3>
+        <p>You check out of Suhaana Ghar on the 2nd, and you drive home on the 4th, so you need somewhere for two more nights. I’d move to <b>Jibhi</b> in the Tirthan valley, about 2 hours from Shangarh (via Sainj, Larji and Banjar). It has a completely different feel from Shangarh: rivers, deodar forest and Jalori Pass. It also takes about an hour off the drive home. <b>Friday 2 Oct is Gandhi Jayanti</b>, so it’s a long weekend and Jibhi fills up. Book this week.</p>
+        <p class="alt">Want to stay put instead? Ask Suhaana Ghar about extending two nights and do Jibhi and Jalori as a long day trip on the 3rd. That’s about 2.5 hours each way, so it’s the tiring option.</p>
+      </div>
+      <div class="opts">
+        <div class="opt">
+          <span class="label">Budget, riverside</span>
+          <h4>Serenade Riverside Homestay</h4>
+          <p class="where">Jibhi · on the Pushpabhadra stream, 5 min walk to Jibhi waterfall</p>
+          <p class="opt-price">≈₹2,000/night with breakfast and dinner (2024 rate)</p>
+          <p>Three rooms in an old wooden house right on the water. Vegetarian home food, bonfires, and the waterfall and market are both a short walk.</p>
+          <p class="opt-links"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Serenade+Riverside+Homestay+Jibhi">Map</a> · <a target="_blank" rel="noopener" href="https://www.homestaysofindia.com/himachal-jibhi-serenade-riverside-homestay/">Details</a></p>
+        </div>
+        <div class="opt">
+          <span class="label">Mid-range, riverside</span>
+          <h4>Moksha – By the River</h4>
+          <p class="where">Jibhi Rest House Road, Jibhi</p>
+          <p class="opt-price">4.8 on Tripadvisor (38 reviews) · ask for rates</p>
+          <p>Four wooden cottages beside the river, with a small waterfall inside the property. Reviewers praise the host (Nirmal), the home food and breakfast by the water.</p>
+          <p class="opt-links"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Moksha+By+The+River+Jibhi">Map</a> · <a target="_blank" rel="noopener" href="https://www.tripadvisor.in/Hotel_Review-g12494524-d23480425-Reviews-Moksha_By_The_River-Jibhi_Kullu_District_Himachal_Pradesh.html">Details</a></p>
+        </div>
+        <div class="opt">
+          <span class="label">Splurge, forest</span>
+          <h4>Winterfell</h4>
+          <p class="where">Above Jibhi, in the deodar forest (about 2,590 m)</p>
+          <p class="opt-price">Premium · ask for rates</p>
+          <p>Hand-built log houses and A-frame cabins, some with a glass bathtub on the balcony and an apple tree growing through. Quiet, cold at night, and 13 km from Jalori Pass.</p>
+          <p class="opt-links"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Winterfell+Jibhi">Map</a> · <a target="_blank" rel="noopener" href="https://winterfelljibhi.com/">Details</a></p>
+        </div>
       </div>
     </div>
+
+    <details class="older">
+      <summary>Other Shangarh stays we compared</summary>
     <div class="stay-grid">
     <article class="stay" id="stay-heavenly">
       <div class="photo"><img src="img/s-heavenly.jpg" alt="A suite with a king bed and a floor-to-ceiling window looking out over pine-covered hills" loading="lazy"><span class="walk w0">Edge of the meadow</span><span class="credit">Photo: Heavenly Retreat</span></div>
@@ -515,24 +632,6 @@ footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
           <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Heavenly+Retreat+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
           <a class="btn ghost" target="_blank" rel="noopener" href="https://www.heavenlyretreat.in/">Website</a>
           <label class="sip fav"><input type="checkbox" id="fav-heavenly">Shortlist</label>
-        </div>
-      </div>
-    </article>
-    <article class="stay" id="stay-suhaana">
-      <div class="photo"><img src="img/s-suhaana.jpg" alt="A wood-panelled double room with a big window onto the hills" loading="lazy"><span class="walk w0">Next to the meadow</span><span class="credit">Photo: Suhaana Ghar</span></div>
-      <div class="info">
-        <span class="kicker">Best value · real homestay</span>
-        <h3>Suhaana Ghar</h3>
-        <p class="where">Goshti village, Shangarh</p>
-        <div class="facts"><span class="price">≈₹1,800<small>/night double</small></span><span class="rt">“Excellent” · about 170 reviews on Google Hotels</span></div>
-        <p class="why">A family-run homestay next to the meadow. Guests keep mentioning the veranda breakfast looking over the meadow and the snow peaks. Hari Om and family cook home-style Himachali food and will walk you round the Shangchul Mahadev temple with the stories behind it.</p>
-        <ul class="chips"><li>Meadow + snow views</li><li>Home-cooked meals</li><li>Local hosts</li><li>Dorm beds too</li></ul>
-        <p class="watch"><b>Check before booking</b>Rooms are simple rather than plush. Ask for a first-floor room for the better view, and confirm parking and how far the car can get.</p>
-        <p class="phone">Call or WhatsApp <span class="num">+91 82404 43268</span></p>
-        <div class="actions">
-          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Suhaana+Ghar+Shangarh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Google Maps</a>
-          <a class="btn ghost" target="_blank" rel="noopener" href="https://suhaanaghar.com/">Website</a>
-          <label class="sip fav"><input type="checkbox" id="fav-suhaana">Shortlist</label>
         </div>
       </div>
     </article>
@@ -594,7 +693,138 @@ footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
     <div class="planb solo stay-extra">
       <div><span class="tag">OLD-SCHOOL OPTION</span><h3>Teja Guest House</h3><p>Run by Tej Ram and his wife. It’s a simple local homestay that travel writers describe as closer to the meadow than the hostels. Call directly: <span class="num">+91 98167 31367</span>. There’s no website, so confirm the rate and parking on the phone.</p></div>
     </div>
-    <p class="stay-note">About the last stretch: Sainj to Shangarh is about 15 km of narrow road with rough patches, and you’ll do it close to dusk. Tell your host your ETA from Aut, since Google Maps is unreliable in the valley and most hosts send a pin or meet you at the Ropa turn-off. Walking times are as described by the properties and their guests.</p>
+    </details>
+  </section>
+
+  <section class="plan" id="todo" aria-labelledby="todoTitle">
+    <div class="stays-head">
+      <span class="kicker">Things to do</span>
+      <h2 id="todoTitle">Five unhurried days</h2>
+      <p>A loose plan, not a schedule. The mornings are the best part up here, and the afternoons are for doing very little. Swap things around as the weather decides.</p>
+    </div>
+    <div class="days">
+      <div class="day">
+        <div class="day-head"><span class="label">Wed 30 Sep</span><h3>Arrival day</h3></div>
+        <ol class="day-list">
+          <li><span class="t">05:00</span><div><b>Leave Gurugram</b><p>The route, coffee stops and viewpoints are all in the Drive tab.</p></div></li>
+          <li><span class="t">≈17:25</span><div><b>Check in at Suhaana Ghar</b><p>Drop your bags, pay the balance, and put on a warm layer. It cools off fast once the sun goes.</p></div></li>
+          <li><span class="t">17:45</span><div><b>First walk onto the meadow</b><p>Golden hour behind the Shangchul Mahadev temple, with sunset around 18:10. Coffee at Pablo’s on the edge of the meadow if you still have the energy.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Shangarh+Meadows">Map</a></div></li>
+          <li><span class="t">Night</span><div><b>Look up</b><p>There’s almost no light pollution. On a clear night the Milky Way shows over the meadow.</p></div></li>
+        </ol>
+      </div>
+      <div class="day">
+        <div class="day-head"><span class="label">Thu 1 Oct</span><h3>Slow Shangarh day</h3></div>
+        <ol class="day-list">
+          <li><span class="t">06:15</span><div><b>Sunrise at the meadow and temple</b><p>The quietest hour. Dew on the grass, first light on the wooden tiers of the temple, and snow peaks to the east. Visitors are welcome at the temple, but be respectful and don’t take photos of any ceremonies.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Shangchul+Mahadev+Temple+Shangarh">Map</a></div></li>
+          <li><span class="t">09:30</span><div><b>Barshangarh waterfall</b><p>About 3.5 km from the village. Drive most of the way on the forest road, then it’s an easy 10–15 minute walk over log bridges to a 30 m fall. Allow about 2 hours in all. The rocks are slippery, so wear shoes with grip.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Barshangarh+Waterfall">Map</a></div></li>
+          <li><span class="t">13:00</span><div><b>Lunch at Pablo’s</b><p>Pahadi rajma or kadhi chawal on the terrace. Be patient: everything is cooked fresh.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Pablo's+Cafe+Shangarh">Map</a></div></li>
+          <li><span class="t">Afternoon</span><div><b>A village walk, or nothing at all</b><p>Wander the lanes past kath-kuni houses and apple orchards, or do the first stretch of the Lapah trail through the forest. This is the slow afternoon to read on the veranda.</p></div></li>
+          <li><span class="t">Evening</span><div><b>Bonfire and an early night</b><p>Ask your hosts about siddu for dinner. It’s a steamed local bread with a walnut or poppy-seed filling.</p></div></li>
+        </ol>
+      </div>
+      <div class="day">
+        <div class="day-head"><span class="label">Fri 2 Oct</span><h3>Sainj valley → Jibhi</h3></div>
+        <ol class="day-list">
+          <li><span class="t">08:30</span><div><b>Check out, drive to Raila</b><p>About 30 km and 1–1.5 hours on the Sainj side. See the Raila twin towers (old wooden watchtowers with a temple) and walk about 1 km to the Rupi Raila waterfall. Expect to cross a small stream, so wear shoes that can get wet.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Raila+Twin+Towers+Sainj">Map</a></div></li>
+          <li><span class="t">or</span><div><b>Pundrik Rishi Lake instead</b><p>From Deohari village it’s a 1–1.5 hour forest walk each way to a small sacred lake with a wooden temple. Pick one, not both.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Pundrik+Rishi+Lake">Map</a></div></li>
+          <li><span class="t">13:30</span><div><b>Lunch in Sainj, then drive to Jibhi</b><p>Sainj → Larji → Banjar → Jibhi takes about 1.5–2 hours. Fill up with fuel at Banjar or Aut.</p></div></li>
+          <li><span class="t">Evening</span><div><b>Jibhi waterfall and a café</b><p>A short walk from the market. Then coffee at OpenBook, a book café inside Jibhi Homestead.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Jibhi+Waterfall">Map</a></div></li>
+        </ol>
+      </div>
+      <div class="day">
+        <div class="day-head"><span class="label">Sat 3 Oct</span><h3>Jalori Pass day</h3></div>
+        <ol class="day-list">
+          <li><span class="t">08:00</span><div><b>Drive up to Jalori Pass (3,120 m)</b><p>About 13 km and 45 minutes from Jibhi, through Shoja. Get there before the long-weekend crowds.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Jalori+Pass">Map</a></div></li>
+          <li><span class="t">08:45</span><div><b>Walk to Serolsar Lake</b><p>About 5 km each way on a mostly level forest trail through oak and deodar, ending at a small sacred lake with the Budhi Nagin temple. Allow 3.5–4 hours round trip. For something shorter, climb to Raghupur Fort instead (about 3 km each way, open ridges and big views).</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Serolsar+Lake">Map</a></div></li>
+          <li><span class="t">14:00</span><div><b>Late lunch at Shoja</b><p>Shoja is on the way down, with valley views.</p></div></li>
+          <li><span class="t">16:00</span><div><b>Chehni Kothi, or the Tirthan river</b><p>Chehni Kothi is a tall stone-and-timber tower temple about a 30-minute walk above the road near Banjar. Or sit by the Tirthan at Gushaini, where the local trout is good.</p><a class="maplink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Chehni+Kothi">Map</a></div></li>
+          <li><span class="t">Night</span><div><b>Pack the car, sleep early</b><p>Leave the dashcam card empty and the tank full for the morning.</p></div></li>
+        </ol>
+      </div>
+      <div class="day">
+        <div class="day-head"><span class="label">Sun 4 Oct</span><h3>Home</h3></div>
+        <ol class="day-list">
+          <li><span class="t">05:30</span><div><b>Leave Jibhi</b><p>Jibhi → Aut → Mandi → Kiratpur → Ambala → Gurugram. That’s about 480 km and 11 hours with stops, arriving around 16:30–17:30. Use the Drive tab’s coffee stops in reverse. Sunday evening traffic builds on NH44 near Delhi, so the earlier you leave, the better.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="plan" id="pack" aria-labelledby="packTitle">
+    <div class="stays-head">
+      <span class="kicker">Packing list</span>
+      <h2 id="packTitle">What goes in the car</h2>
+      <p>Tick items as they go in the boot. This page remembers your ticks in your browser. The car kit you already have is ticked for you.</p>
+      <div class="pack-progress"><div class="bar"><span id="packBar"></span></div><span id="packCount"></span></div>
+    </div>
+    <div class="pgroups">
+      <div class="pgroup">
+        <div class="pg-head"><h3>Car</h3><span class="pg-count" data-group="car"></span></div>
+        <ul class="plist" data-group="car">
+          <li><label><input type="checkbox" class="pk" id="pk-car-0" data-default="1"><span>Bergmann air compressor</span><em>you have this</em></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-1" data-default="1"><span>Puncture repair kit</span><em>you have this</em></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-2" data-default="1"><span>Dashcam + memory card</span><em>you have this</em></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-3"><span>Spare tyre: check the pressure and tread</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-4"><span>Jack, wheel spanner, locking-nut key</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-5"><span>Jumper cables and a tow rope</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-6"><span>Service check: oil, coolant, brakes, wipers</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-7"><span>FASTag topped up (KMP, NH44, plus Moda and Baloh on the four-lane)</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-8"><span>RC, insurance, PUC and driving licence (originals or DigiLocker)</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-9"><span>Phone mount and car charger</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-10"><span>Microfibre cloth for the windscreen</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-car-11"><span>Torch in the glovebox</span></label></li>
+        </ul>
+      </div>
+      <div class="pgroup">
+        <div class="pg-head"><h3>Clothes</h3><span class="pg-count" data-group="clothes"></span></div>
+        <ul class="plist" data-group="clothes">
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-0"><span>Warm jacket (down or fleece). Nights can fall to about 5–8°C</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-1"><span>Thermal base layers</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-2"><span>Light rain shell (post-monsoon showers)</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-3"><span>Walking shoes with good grip</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-4"><span>Sandals or slippers for the homestay</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-5"><span>Wool socks</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-6"><span>Beanie and a sun cap</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-clothes-7"><span>Comfortable layers for the drive</span></label></li>
+        </ul>
+      </div>
+      <div class="pgroup">
+        <div class="pg-head"><h3>Health & toiletries</h3><span class="pg-count" data-group="health"></span></div>
+        <ul class="plist" data-group="health">
+          <li><label><input type="checkbox" class="pk" id="pk-health-0"><span>Sunscreen (SPF 50) and lip balm</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-health-1"><span>Motion-sickness tablets for the hairpins</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-health-2"><span>Paracetamol, antacid, ORS</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-health-3"><span>Band-aids and antiseptic</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-health-4"><span>Personal medicines</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-health-5"><span>Moisturiser (the air is dry)</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-health-6"><span>Hand sanitiser and tissues</span></label></li>
+        </ul>
+      </div>
+      <div class="pgroup">
+        <div class="pg-head"><h3>Essentials</h3><span class="pg-count" data-group="essentials"></span></div>
+        <ul class="plist" data-group="essentials">
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-0"><span>Cash: ₹1,900 for Suhaana Ghar plus ₹5–8k spare (ATMs are only in Sainj, Banjar and Aut)</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-1"><span>Original government ID for check-ins</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-2"><span>Power bank</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-3"><span>Headlamp</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-4"><span>Offline Google Maps for Kullu, Sainj and Tirthan</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-5"><span>Reusable water bottles</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-6"><span>Snacks: dry fruit, biscuits, chocolate</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-7"><span>Small daypack for the walks</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-essentials-8"><span>Bags to carry your rubbish back down</span></label></li>
+        </ul>
+      </div>
+      <div class="pgroup">
+        <div class="pg-head"><h3>Nice to have</h3><span class="pg-count" data-group="extras"></span></div>
+        <ul class="plist" data-group="extras">
+          <li><label><input type="checkbox" class="pk" id="pk-extras-0"><span>Binoculars (GHNP birdlife)</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-extras-1"><span>A book for the veranda</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-extras-2"><span>Downloaded playlists and podcasts</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-extras-3"><span>Thermos for chai on the meadow at dawn</span></label></li>
+          <li><label><input type="checkbox" class="pk" id="pk-extras-4"><span>Card game or board game</span></label></li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section class="notes" id="notesBox" aria-label="Road notes">
@@ -641,14 +871,30 @@ footer{margin-top:36px;color:var(--ink-soft);font-size:12.5px;max-width:80ch}
     document.querySelectorAll('#route > li').forEach(function(li){
       var k=li.dataset.kind;li.hidden=f!=='all'&&(k?k!==f:true);
     });
-    var st=document.getElementById('stays');if(st)st.hidden=!(f==='all'||f==='stay');
-    ['route','dialBox','notesBox'].forEach(function(id){var el=document.getElementById(id);if(el)el.hidden=f==='stay'});
+    var sec={stays:'stay',todo:'todo',pack:'pack'};
+    Object.keys(sec).forEach(function(id){var el=document.getElementById(id);if(el)el.hidden=!(f==='all'||f===sec[id])});
+    var drive=f==='all'||f==='coffee'||f==='view';
+    ['route','dialBox','notesBox'].forEach(function(id){var el=document.getElementById(id);if(el)el.hidden=!drive});
     store.set('filter',f);
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){filter(b.dataset.filter)})});
-  var sf=store.get('filter');filter(sf==='coffee'||sf==='view'||sf==='stay'?sf:'all');
+  var sf=store.get('filter');filter(['coffee','view','stay','todo','pack'].indexOf(sf)>-1?sf:'all');
+  var pks=document.querySelectorAll('.pk');
+  function packUpdate(){
+    var done=0;pks.forEach(function(c){if(c.checked)done++});
+    var bar=document.getElementById('packBar'),cnt=document.getElementById('packCount');
+    if(bar)bar.style.width=(pks.length?done/pks.length*100:0)+'%';
+    if(cnt)cnt.textContent=done+' of '+pks.length+' packed';
+    document.querySelectorAll('.pg-count').forEach(function(el){
+      var list=document.querySelectorAll('.plist[data-group="'+el.dataset.group+'"] .pk'),d=0;list.forEach(function(c){if(c.checked)d++});
+      el.textContent=d+'/'+list.length;
+    });
+  }
+  pks.forEach(function(c){var v=store.get(c.id);c.checked=v===null?c.dataset.default==='1':v==='1';
+    c.addEventListener('change',function(){store.set(c.id,c.checked?'1':'0');packUpdate()})});
+  packUpdate();
   document.querySelectorAll('.sip.fav input').forEach(function(cb){
-    var card=cb.closest('.stay');cb.checked=store.get(cb.id)==='1';card.classList.toggle('faved',cb.checked);
+    var card=cb.closest('.stay');if(!card)return;cb.checked=store.get(cb.id)==='1';card.classList.toggle('faved',cb.checked);
     cb.addEventListener('change',function(){card.classList.toggle('faved',cb.checked);store.set(cb.id,cb.checked?'1':'0')});
   });
 })();
